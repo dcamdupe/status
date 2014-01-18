@@ -21,4 +21,5 @@ Invoke-Sqlcmd -Query "SELECT * from information_schema.tables" -ServerInstance "
 
 $tablesPath = resolve-path "..\\tables\\"
 get-childitem "$tablesPath\\*.sql" | foreach {
+	write-host "executing $_"
 	Invoke-Sqlcmd -Database "status" -InputFile $_ -ServerInstance "(local)" }
