@@ -1,4 +1,4 @@
-INSERT INTO [user] (user_name) VALUES ('test@test.com')
+INSERT INTO [user] (user_name) VALUES ('valid@test.com')
 
 DECLARE @user_id int
 

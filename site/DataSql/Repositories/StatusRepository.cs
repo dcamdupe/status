@@ -12,9 +12,9 @@ namespace Data.Repositories
     {
         private statusContainer _db;
 
-        public StatusRepository(string connectionString)
+        public StatusRepository(ConnectionDetails connection)
         {
-            _db = ConnectionBuilder.Create(connectionString);
+            _db = ConnectionBuilder.Create(connection.ConnectionString);
         }
 
         public int Add(string message, int userId)

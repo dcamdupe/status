@@ -9,6 +9,7 @@ namespace site.App_Start
     using Microsoft.Web.Infrastructure.DynamicModuleHelper;
     using Ninject;
     using Ninject.Web.Common;
+    using Ninject.Activation.Providers;
     using DataInterfaces.Repositories;
     using Data.Repositories;
     using Data;
@@ -57,9 +58,11 @@ namespace site.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             var connString = System.Configuration.ConfigurationManager.ConnectionStrings["status"].ConnectionString;
-            kernel.Bind<IStatusRepository>().ToConstructor(_ => new StatusRepository(connString));
-            kernel.Bind<IUserPasswordRepository>().ToConstructor(_ => new UserPasswordRepository(connString));
-            kernel.Bind<IUserRepository>().ToConstructor(_ => new UserRepository(connString));
+            kernel.Bind<ConnectionDetails>().ToConstructor(_ => new ConnectionDetails(connString) );
+
+            kernel.Bind<IStatusRepository>().To<StatusRepository>();
+            kernel.Bind<IUserPasswordRepository>().To<UserPasswordRepository>();
+            kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<Authentication>().ToSelf();
         }
     }

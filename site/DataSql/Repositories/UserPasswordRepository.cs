@@ -12,9 +12,9 @@ namespace Data.Repositories
     {
         private statusContainer _db;
 
-        public UserPasswordRepository(string connectionString)
+        public UserPasswordRepository(ConnectionDetails connection)
         {
-            _db = ConnectionBuilder.Create(connectionString);
+            _db = ConnectionBuilder.Create(connection.ConnectionString);
         }
 
         public UserPassword GetById(int userId)

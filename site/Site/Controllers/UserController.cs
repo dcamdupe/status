@@ -32,6 +32,11 @@ namespace site.Controllers
             {
                 var result = _authentication.AuthenticateUser(auth.Login, auth.Password);
 
+                if (result)
+                {
+                    // TODO: set session to logged in & redirect
+                }
+
                 return View(auth);
             }
 
