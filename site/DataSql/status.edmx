@@ -4,416 +4,44 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="statusModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="statusModelStoreContainer">
-          <EntitySet Name="password" EntityType="statusModel.Store.password" store:Type="Tables" store:Schema="dbo" store:Name="password">
-            <DefiningQuery>SELECT 
-      [password].[user_id] AS [user_id], 
-      [password].[salt] AS [salt], 
-      [password].[password] AS [password]
-      FROM [dbo].[password] AS [password]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="status" EntityType="statusModel.Store.status" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="status_like" EntityType="statusModel.Store.status_like" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="status_view" EntityType="statusModel.Store.status_view" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="user" EntityType="statusModel.Store.user" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__password__user_i__023D5A04" Association="statusModel.Store.FK__password__user_i__023D5A04">
-            <End Role="user" EntitySet="user" />
-            <End Role="password" EntitySet="password" />
-          </AssociationSet>
-          <AssociationSet Name="FK__status__user_id__07020F21" Association="statusModel.Store.FK__status__user_id__07020F21">
-            <End Role="user" EntitySet="user" />
-            <End Role="status" EntitySet="status" />
-          </AssociationSet>
-          <AssociationSet Name="FK__status_li__statu__0BC6C43E" Association="statusModel.Store.FK__status_li__statu__0BC6C43E">
-            <End Role="status" EntitySet="status" />
-            <End Role="status_like" EntitySet="status_like" />
-          </AssociationSet>
-          <AssociationSet Name="FK__status_li__user___0CBAE877" Association="statusModel.Store.FK__status_li__user___0CBAE877">
-            <End Role="user" EntitySet="user" />
-            <End Role="status_like" EntitySet="status_like" />
-          </AssociationSet>
-          <AssociationSet Name="FK__status_vi__statu__117F9D94" Association="statusModel.Store.FK__status_vi__statu__117F9D94">
-            <End Role="status" EntitySet="status" />
-            <End Role="status_view" EntitySet="status_view" />
-          </AssociationSet>
-          <AssociationSet Name="FK__status_vi__user___1273C1CD" Association="statusModel.Store.FK__status_vi__user___1273C1CD">
-            <End Role="user" EntitySet="user" />
-            <End Role="status_view" EntitySet="status_view" />
-          </AssociationSet>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl" Namespace="status.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="statusTargetContainer" >
         </EntityContainer>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'status.dbo.password' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      -->
-        <EntityType Name="password">
-          <Key>
-            <PropertyRef Name="user_id" />
-          </Key>
-          <Property Name="user_id" Type="int" Nullable="false" />
-          <Property Name="salt" Type="varchar" MaxLength="50" />
-          <Property Name="password" Type="varbinary" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="status">
-          <Key>
-            <PropertyRef Name="status_id" />
-          </Key>
-          <Property Name="status_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="message" Type="nvarchar" Nullable="false" MaxLength="500" />
-          <Property Name="user_id" Type="int" Nullable="false" />
-          <Property Name="date_added" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="status_like">
-          <Key>
-            <PropertyRef Name="status_like_id" />
-          </Key>
-          <Property Name="status_like_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="status_id" Type="int" Nullable="false" />
-          <Property Name="ip_address" Type="varchar" Nullable="false" MaxLength="40" />
-          <Property Name="date_added" Type="datetime" Nullable="false" />
-          <Property Name="user_id" Type="int" />
-        </EntityType>
-        <EntityType Name="status_view">
-          <Key>
-            <PropertyRef Name="status_view_id" />
-          </Key>
-          <Property Name="status_view_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="status_id" Type="int" Nullable="false" />
-          <Property Name="ip_address" Type="varchar" Nullable="false" MaxLength="40" />
-          <Property Name="date_added" Type="datetime" Nullable="false" />
-          <Property Name="user_id" Type="int" />
-        </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="user_id" />
-          </Key>
-          <Property Name="user_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="user_name" Type="nvarchar" Nullable="false" MaxLength="200" />
-        </EntityType>
-        <Association Name="FK__password__user_i__023D5A04">
-          <End Role="user" Type="statusModel.Store.user" Multiplicity="1" />
-          <End Role="password" Type="statusModel.Store.password" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="password">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__status__user_id__07020F21">
-          <End Role="user" Type="statusModel.Store.user" Multiplicity="1" />
-          <End Role="status" Type="statusModel.Store.status" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="status">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__status_li__statu__0BC6C43E">
-          <End Role="status" Type="statusModel.Store.status" Multiplicity="1" />
-          <End Role="status_like" Type="statusModel.Store.status_like" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="status">
-              <PropertyRef Name="status_id" />
-            </Principal>
-            <Dependent Role="status_like">
-              <PropertyRef Name="status_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__status_li__user___0CBAE877">
-          <End Role="user" Type="statusModel.Store.user" Multiplicity="0..1" />
-          <End Role="status_like" Type="statusModel.Store.status_like" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="status_like">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__status_vi__statu__117F9D94">
-          <End Role="status" Type="statusModel.Store.status" Multiplicity="1" />
-          <End Role="status_view" Type="statusModel.Store.status_view" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="status">
-              <PropertyRef Name="status_id" />
-            </Principal>
-            <Dependent Role="status_view">
-              <PropertyRef Name="status_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__status_vi__user___1273C1CD">
-          <End Role="user" Type="statusModel.Store.user" Multiplicity="0..1" />
-          <End Role="status_view" Type="statusModel.Store.status_view" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="status_view">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="statusModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="passwords" EntityType="statusModel.password" />
-          <EntitySet Name="status" EntityType="statusModel.status" />
-          <EntitySet Name="status_like" EntityType="statusModel.status_like" />
-          <EntitySet Name="status_view" EntityType="statusModel.status_view" />
-          <EntitySet Name="users" EntityType="statusModel.user" />
-          <AssociationSet Name="FK__password__user_i__023D5A04" Association="statusModel.FK__password__user_i__023D5A04">
-            <End Role="user" EntitySet="users" />
-            <End Role="password" EntitySet="passwords" />
-          </AssociationSet>
-          <AssociationSet Name="FK__status__user_id__07020F21" Association="statusModel.FK__status__user_id__07020F21">
-            <End Role="user" EntitySet="users" />
-            <End Role="status" EntitySet="status" />
-          </AssociationSet>
-          <AssociationSet Name="FK__status_li__statu__0BC6C43E" Association="statusModel.FK__status_li__statu__0BC6C43E">
-            <End Role="status" EntitySet="status" />
-            <End Role="status_like" EntitySet="status_like" />
-          </AssociationSet>
-          <AssociationSet Name="FK__status_vi__statu__117F9D94" Association="statusModel.FK__status_vi__statu__117F9D94">
-            <End Role="status" EntitySet="status" />
-            <End Role="status_view" EntitySet="status_view" />
-          </AssociationSet>
-          <AssociationSet Name="FK__status_li__user___0CBAE877" Association="statusModel.FK__status_li__user___0CBAE877">
-            <End Role="user" EntitySet="users" />
-            <End Role="status_like" EntitySet="status_like" />
-          </AssociationSet>
-          <AssociationSet Name="FK__status_vi__user___1273C1CD" Association="statusModel.FK__status_vi__user___1273C1CD">
-            <End Role="user" EntitySet="users" />
-            <End Role="status_view" EntitySet="status_view" />
-          </AssociationSet>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="status" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="statusContainer" annotation:LazyLoadingEnabled="true">
         </EntityContainer>
-        <EntityType Name="password">
-          <Key>
-            <PropertyRef Name="user_id" />
-          </Key>
-          <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="salt" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="password1" Type="Binary" MaxLength="100" FixedLength="false" />
-          <NavigationProperty Name="user" Relationship="statusModel.FK__password__user_i__023D5A04" FromRole="password" ToRole="user" />
-        </EntityType>
-        <EntityType Name="status">
-          <Key>
-            <PropertyRef Name="status_id" />
-          </Key>
-          <Property Name="status_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="message" Type="String" Nullable="false" MaxLength="500" Unicode="true" FixedLength="false" />
-          <Property Name="user_id" Type="Int32" Nullable="false" />
-          <Property Name="date_added" Type="DateTime" Nullable="false" />
-          <NavigationProperty Name="user" Relationship="statusModel.FK__status__user_id__07020F21" FromRole="status" ToRole="user" />
-          <NavigationProperty Name="status_like" Relationship="statusModel.FK__status_li__statu__0BC6C43E" FromRole="status" ToRole="status_like" />
-          <NavigationProperty Name="status_view" Relationship="statusModel.FK__status_vi__statu__117F9D94" FromRole="status" ToRole="status_view" />
-        </EntityType>
-        <EntityType Name="status_like">
-          <Key>
-            <PropertyRef Name="status_like_id" />
-          </Key>
-          <Property Name="status_like_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="status_id" Type="Int32" Nullable="false" />
-          <Property Name="ip_address" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
-          <Property Name="date_added" Type="DateTime" Nullable="false" />
-          <Property Name="user_id" Type="Int32" />
-          <NavigationProperty Name="status" Relationship="statusModel.FK__status_li__statu__0BC6C43E" FromRole="status_like" ToRole="status" />
-          <NavigationProperty Name="user" Relationship="statusModel.FK__status_li__user___0CBAE877" FromRole="status_like" ToRole="user" />
-        </EntityType>
-        <EntityType Name="status_view">
-          <Key>
-            <PropertyRef Name="status_view_id" />
-          </Key>
-          <Property Name="status_view_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="status_id" Type="Int32" Nullable="false" />
-          <Property Name="ip_address" Type="String" Nullable="false" MaxLength="40" Unicode="false" FixedLength="false" />
-          <Property Name="date_added" Type="DateTime" Nullable="false" />
-          <Property Name="user_id" Type="Int32" />
-          <NavigationProperty Name="status" Relationship="statusModel.FK__status_vi__statu__117F9D94" FromRole="status_view" ToRole="status" />
-          <NavigationProperty Name="user" Relationship="statusModel.FK__status_vi__user___1273C1CD" FromRole="status_view" ToRole="user" />
-        </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="user_id" />
-          </Key>
-          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="user_name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="password" Relationship="statusModel.FK__password__user_i__023D5A04" FromRole="user" ToRole="password" />
-          <NavigationProperty Name="status" Relationship="statusModel.FK__status__user_id__07020F21" FromRole="user" ToRole="status" />
-          <NavigationProperty Name="status_like" Relationship="statusModel.FK__status_li__user___0CBAE877" FromRole="user" ToRole="status_like" />
-          <NavigationProperty Name="status_view" Relationship="statusModel.FK__status_vi__user___1273C1CD" FromRole="user" ToRole="status_view" />
-        </EntityType>
-        <Association Name="FK__password__user_i__023D5A04">
-          <End Role="user" Type="statusModel.user" Multiplicity="1" />
-          <End Role="password" Type="statusModel.password" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="password">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__status__user_id__07020F21">
-          <End Role="user" Type="statusModel.user" Multiplicity="1" />
-          <End Role="status" Type="statusModel.status" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="status">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__status_li__statu__0BC6C43E">
-          <End Role="status" Type="statusModel.status" Multiplicity="1" />
-          <End Role="status_like" Type="statusModel.status_like" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="status">
-              <PropertyRef Name="status_id" />
-            </Principal>
-            <Dependent Role="status_like">
-              <PropertyRef Name="status_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__status_vi__statu__117F9D94">
-          <End Role="status" Type="statusModel.status" Multiplicity="1" />
-          <End Role="status_view" Type="statusModel.status_view" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="status">
-              <PropertyRef Name="status_id" />
-            </Principal>
-            <Dependent Role="status_view">
-              <PropertyRef Name="status_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__status_li__user___0CBAE877">
-          <End Role="user" Type="statusModel.user" Multiplicity="0..1" />
-          <End Role="status_like" Type="statusModel.status_like" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="status_like">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__status_vi__user___1273C1CD">
-          <End Role="user" Type="statusModel.user" Multiplicity="0..1" />
-          <End Role="status_view" Type="statusModel.status_view" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="user">
-              <PropertyRef Name="user_id" />
-            </Principal>
-            <Dependent Role="status_view">
-              <PropertyRef Name="user_id" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="statusModelStoreContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="passwords"><EntityTypeMapping TypeName="statusModel.password"><MappingFragment StoreEntitySet="password">
-            <ScalarProperty Name="user_id" ColumnName="user_id" />
-            <ScalarProperty Name="salt" ColumnName="salt" />
-            <ScalarProperty Name="password1" ColumnName="password" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="status"><EntityTypeMapping TypeName="statusModel.status"><MappingFragment StoreEntitySet="status">
-            <ScalarProperty Name="status_id" ColumnName="status_id" />
-            <ScalarProperty Name="message" ColumnName="message" />
-            <ScalarProperty Name="user_id" ColumnName="user_id" />
-            <ScalarProperty Name="date_added" ColumnName="date_added" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="status_like"><EntityTypeMapping TypeName="statusModel.status_like"><MappingFragment StoreEntitySet="status_like">
-            <ScalarProperty Name="status_like_id" ColumnName="status_like_id" />
-            <ScalarProperty Name="status_id" ColumnName="status_id" />
-            <ScalarProperty Name="ip_address" ColumnName="ip_address" />
-            <ScalarProperty Name="date_added" ColumnName="date_added" />
-            <ScalarProperty Name="user_id" ColumnName="user_id" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="status_view"><EntityTypeMapping TypeName="statusModel.status_view"><MappingFragment StoreEntitySet="status_view">
-            <ScalarProperty Name="status_view_id" ColumnName="status_view_id" />
-            <ScalarProperty Name="status_id" ColumnName="status_id" />
-            <ScalarProperty Name="ip_address" ColumnName="ip_address" />
-            <ScalarProperty Name="date_added" ColumnName="date_added" />
-            <ScalarProperty Name="user_id" ColumnName="user_id" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
-          <EntitySetMapping Name="users"><EntityTypeMapping TypeName="statusModel.user"><MappingFragment StoreEntitySet="user">
-            <ScalarProperty Name="user_id" ColumnName="user_id" />
-            <ScalarProperty Name="user_name" ColumnName="user_name" />
-          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="status" />
+        <Alias Key="Target" Value="status.Store" />
+        <EntityContainerMapping CdmEntityContainer="statusContainer" StorageEntityContainer="statusTargetContainer">
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
-    <Connection>
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <edmx:Connection>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
       </DesignerInfoPropertySet>
-    </Connection>
-    <Options>
+    </edmx:Connection>
+    <edmx:Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
       </DesignerInfoPropertySet>
-    </Options>
+    </edmx:Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams>
-      <Diagram Name="status">
-        <EntityTypeShape EntityType="statusModel.password" Width="1.5" PointX="3" PointY="2.625" Height="1.5923063151041674" IsExpanded="true" />
-        <EntityTypeShape EntityType="statusModel.status" Width="1.5" PointX="3" PointY="5" Height="2.0853483072916674" IsExpanded="true" />
-        <EntityTypeShape EntityType="statusModel.status_like" Width="1.5" PointX="5.25" PointY="4.375" Height="2.0853483072916656" IsExpanded="true" />
-        <EntityTypeShape EntityType="statusModel.status_view" Width="1.5" PointX="5.25" PointY="1.375" Height="2.0853483072916656" IsExpanded="true" />
-        <EntityTypeShape EntityType="statusModel.user" Width="1.5" PointX="0.75" PointY="3.875" Height="1.9210009765624996" IsExpanded="true" />
-        <AssociationConnector Association="statusModel.FK__password__user_i__023D5A04" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="4.0461531575520837" />
-          <ConnectorPoint PointX="3" PointY="4.0461531575520837" />
-        </AssociationConnector>
-        <AssociationConnector Association="statusModel.FK__status__user_id__07020F21" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="5.39800048828125" />
-          <ConnectorPoint PointX="3" PointY="5.39800048828125" />
-        </AssociationConnector>
-        <AssociationConnector Association="statusModel.FK__status_li__statu__0BC6C43E" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="5.7301741536458328" />
-          <ConnectorPoint PointX="5.25" PointY="5.7301741536458328" />
-        </AssociationConnector>
-        <AssociationConnector Association="statusModel.FK__status_vi__statu__117F9D94" ManuallyRouted="false">
-          <ConnectorPoint PointX="4.5" PointY="5" />
-          <ConnectorPoint PointX="4.875" PointY="4.625" />
-          <ConnectorPoint PointX="4.875" PointY="2.4176741536458328" />
-          <ConnectorPoint PointX="5.25" PointY="2.4176741536458328" />
-        </AssociationConnector>
-        <AssociationConnector Association="statusModel.FK__status_li__user___0CBAE877" ManuallyRouted="false">
-          <ConnectorPoint PointX="2.25" PointY="4.65625" />
-          <ConnectorPoint PointX="5.25" PointY="4.65625" />
-        </AssociationConnector>
-        <AssociationConnector Association="statusModel.FK__status_vi__user___1273C1CD" ManuallyRouted="false">
-          <ConnectorPoint PointX="1.5" PointY="3.875" />
-          <ConnectorPoint PointX="1.5" PointY="1.8650845768229156" />
-          <ConnectorPoint PointX="5.25" PointY="1.8650845768229156" />
-        </AssociationConnector>
-      </Diagram>
-    </Diagrams>
-  </Designer>
+    <edmx:Diagrams>
+      <Diagram Name="status" />
+    </edmx:Diagrams>
+  </edmx:Designer>
 </edmx:Edmx>

@@ -1,0 +1,20 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@model site.Models.AuthenticationDetails
+@section featured {
+    <section>
+        Here be logins
+    </section>
+}
+@using (Html.BeginForm("Index", "User", FormMethod.Post))
+{
+    <div>
+        <div>@Html.LabelFor(model => model.Login) : @Html.TextBoxFor(model => model.Login)
+                @Html.ValidationMessageFor(model => model.Login)</div>
+        <div>@Html.LabelFor(model => model.Password) @Html.TextBoxFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password)</div>
+        <div><input type="submit" value="Login" /></div>
+    </div>
+}

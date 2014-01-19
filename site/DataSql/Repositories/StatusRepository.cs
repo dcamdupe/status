@@ -11,7 +11,7 @@ namespace Data.Repositories
     public class StatusRepository
     {
         // TODO: need to build the connection string
-        private Entities _db;
+        private statusEntities _db;
 
         public int Add(string message, int userId)
         {

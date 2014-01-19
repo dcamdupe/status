@@ -20,10 +20,10 @@ using System.Runtime.Serialization;
 
 [assembly: EdmRelationshipAttribute("statusModel", "FK__password__user_i__023D5A04", "user", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data.user), "password", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.password), true)]
 [assembly: EdmRelationshipAttribute("statusModel", "FK__status__user_id__07020F21", "user", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data.user), "status", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.status), true)]
-[assembly: EdmRelationshipAttribute("statusModel", "FK__status_li__statu__0BC6C43E", "status", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data.status), "status_like", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.status_like), true)]
-[assembly: EdmRelationshipAttribute("statusModel", "FK__status_vi__statu__117F9D94", "status", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data.status), "status_view", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.status_view), true)]
-[assembly: EdmRelationshipAttribute("statusModel", "FK__status_li__user___0CBAE877", "user", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.user), "status_like", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.status_like), true)]
-[assembly: EdmRelationshipAttribute("statusModel", "FK__status_vi__user___1273C1CD", "user", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.user), "status_view", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.status_view), true)]
+[assembly: EdmRelationshipAttribute("statusModel", "FK__status_li__statu__08EA5793", "status", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data.status), "status_like", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.status_like), true)]
+[assembly: EdmRelationshipAttribute("statusModel", "FK__status_vi__statu__0BC6C43E", "status", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data.status), "status_view", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.status_view), true)]
+[assembly: EdmRelationshipAttribute("statusModel", "FK__status_li__user___09DE7BCC", "user", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.user), "status_like", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.status_like), true)]
+[assembly: EdmRelationshipAttribute("statusModel", "FK__status_vi__user___0CBAE877", "user", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.user), "status_view", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.status_view), true)]
 
 #endregion
 
@@ -34,32 +34,32 @@ namespace Data
     /// <summary>
     /// No Metadata Documentation available.
     /// </summary>
-    public partial class Entities : ObjectContext
+    public partial class statusEntities : ObjectContext
     {
         #region Constructors
     
         /// <summary>
-        /// Initializes a new Entities object using the connection string found in the 'Entities' section of the application configuration file.
+        /// Initializes a new statusEntities object using the connection string found in the 'statusEntities' section of the application configuration file.
         /// </summary>
-        public Entities() : base("name=Entities", "Entities")
+        public statusEntities() : base("name=statusEntities", "statusEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new Entities object.
+        /// Initialize a new statusEntities object.
         /// </summary>
-        public Entities(string connectionString) : base(connectionString, "Entities")
+        public statusEntities(string connectionString) : base(connectionString, "statusEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
         }
     
         /// <summary>
-        /// Initialize a new Entities object.
+        /// Initialize a new statusEntities object.
         /// </summary>
-        public Entities(EntityConnection connection) : base(connection, "Entities")
+        public statusEntities(EntityConnection connection) : base(connection, "statusEntities")
         {
             this.ContextOptions.LazyLoadingEnabled = true;
             OnContextCreated();
@@ -527,18 +527,18 @@ namespace Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("statusModel", "FK__status_li__statu__0BC6C43E", "status_like")]
+        [EdmRelationshipNavigationPropertyAttribute("statusModel", "FK__status_li__statu__08EA5793", "status_like")]
         public EntityCollection<status_like> status_like
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<status_like>("statusModel.FK__status_li__statu__0BC6C43E", "status_like");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<status_like>("statusModel.FK__status_li__statu__08EA5793", "status_like");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<status_like>("statusModel.FK__status_li__statu__0BC6C43E", "status_like", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<status_like>("statusModel.FK__status_li__statu__08EA5793", "status_like", value);
                 }
             }
         }
@@ -549,18 +549,18 @@ namespace Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("statusModel", "FK__status_vi__statu__117F9D94", "status_view")]
+        [EdmRelationshipNavigationPropertyAttribute("statusModel", "FK__status_vi__statu__0BC6C43E", "status_view")]
         public EntityCollection<status_view> status_view
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<status_view>("statusModel.FK__status_vi__statu__117F9D94", "status_view");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<status_view>("statusModel.FK__status_vi__statu__0BC6C43E", "status_view");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<status_view>("statusModel.FK__status_vi__statu__117F9D94", "status_view", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<status_view>("statusModel.FK__status_vi__statu__0BC6C43E", "status_view", value);
                 }
             }
         }
@@ -581,22 +581,127 @@ namespace Data
         /// <summary>
         /// Create a new status_like object.
         /// </summary>
-        /// <param name="status_like_id">Initial value of the status_like_id property.</param>
         /// <param name="status_id">Initial value of the status_id property.</param>
         /// <param name="ip_address">Initial value of the ip_address property.</param>
         /// <param name="date_added">Initial value of the date_added property.</param>
-        public static status_like Createstatus_like(global::System.Int32 status_like_id, global::System.Int32 status_id, global::System.String ip_address, global::System.DateTime date_added)
+        /// <param name="status_like_id">Initial value of the status_like_id property.</param>
+        public static status_like Createstatus_like(global::System.Int32 status_id, global::System.String ip_address, global::System.DateTime date_added, global::System.Int32 status_like_id)
         {
             status_like status_like = new status_like();
-            status_like.status_like_id = status_like_id;
             status_like.status_id = status_id;
             status_like.ip_address = ip_address;
             status_like.date_added = date_added;
+            status_like.status_like_id = status_like_id;
             return status_like;
         }
 
         #endregion
         #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 status_id
+        {
+            get
+            {
+                return _status_id;
+            }
+            set
+            {
+                if (_status_id != value)
+                {
+                    Onstatus_idChanging(value);
+                    ReportPropertyChanging("status_id");
+                    _status_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("status_id");
+                    Onstatus_idChanged();
+                }
+            }
+        }
+        private global::System.Int32 _status_id;
+        partial void Onstatus_idChanging(global::System.Int32 value);
+        partial void Onstatus_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String ip_address
+        {
+            get
+            {
+                return _ip_address;
+            }
+            set
+            {
+                if (_ip_address != value)
+                {
+                    Onip_addressChanging(value);
+                    ReportPropertyChanging("ip_address");
+                    _ip_address = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("ip_address");
+                    Onip_addressChanged();
+                }
+            }
+        }
+        private global::System.String _ip_address;
+        partial void Onip_addressChanging(global::System.String value);
+        partial void Onip_addressChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime date_added
+        {
+            get
+            {
+                return _date_added;
+            }
+            set
+            {
+                if (_date_added != value)
+                {
+                    Ondate_addedChanging(value);
+                    ReportPropertyChanging("date_added");
+                    _date_added = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("date_added");
+                    Ondate_addedChanged();
+                }
+            }
+        }
+        private global::System.DateTime _date_added;
+        partial void Ondate_addedChanging(global::System.DateTime value);
+        partial void Ondate_addedChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> user_id
+        {
+            get
+            {
+                return _user_id;
+            }
+            set
+            {
+                Onuser_idChanging(value);
+                ReportPropertyChanging("user_id");
+                _user_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("user_id");
+                Onuser_idChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _user_id;
+        partial void Onuser_idChanging(Nullable<global::System.Int32> value);
+        partial void Onuser_idChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -624,11 +729,124 @@ namespace Data
         private global::System.Int32 _status_like_id;
         partial void Onstatus_like_idChanging(global::System.Int32 value);
         partial void Onstatus_like_idChanged();
+
+        #endregion
+    
+        #region Navigation Properties
     
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("statusModel", "FK__status_li__statu__08EA5793", "status")]
+        public status status
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<status>("statusModel.FK__status_li__statu__08EA5793", "status").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<status>("statusModel.FK__status_li__statu__08EA5793", "status").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<status> statusReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<status>("statusModel.FK__status_li__statu__08EA5793", "status");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<status>("statusModel.FK__status_li__statu__08EA5793", "status", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("statusModel", "FK__status_li__user___09DE7BCC", "user")]
+        public user user
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<user>("statusModel.FK__status_li__user___09DE7BCC", "user").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<user>("statusModel.FK__status_li__user___09DE7BCC", "user").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<user> userReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<user>("statusModel.FK__status_li__user___09DE7BCC", "user");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<user>("statusModel.FK__status_li__user___09DE7BCC", "user", value);
+                }
+            }
+        }
+
+        #endregion
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="statusModel", Name="status_view")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class status_view : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new status_view object.
+        /// </summary>
+        /// <param name="status_id">Initial value of the status_id property.</param>
+        /// <param name="ip_address">Initial value of the ip_address property.</param>
+        /// <param name="date_added">Initial value of the date_added property.</param>
+        /// <param name="status_view_id">Initial value of the status_view_id property.</param>
+        public static status_view Createstatus_view(global::System.Int32 status_id, global::System.String ip_address, global::System.DateTime date_added, global::System.Int32 status_view_id)
+        {
+            status_view status_view = new status_view();
+            status_view.status_id = status_id;
+            status_view.ip_address = ip_address;
+            status_view.date_added = date_added;
+            status_view.status_view_id = status_view_id;
+            return status_view;
+        }
+
+        #endregion
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.Int32 status_id
         {
@@ -638,11 +856,14 @@ namespace Data
             }
             set
             {
-                Onstatus_idChanging(value);
-                ReportPropertyChanging("status_id");
-                _status_id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("status_id");
-                Onstatus_idChanged();
+                if (_status_id != value)
+                {
+                    Onstatus_idChanging(value);
+                    ReportPropertyChanging("status_id");
+                    _status_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("status_id");
+                    Onstatus_idChanged();
+                }
             }
         }
         private global::System.Int32 _status_id;
@@ -652,7 +873,7 @@ namespace Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.String ip_address
         {
@@ -662,11 +883,14 @@ namespace Data
             }
             set
             {
-                Onip_addressChanging(value);
-                ReportPropertyChanging("ip_address");
-                _ip_address = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("ip_address");
-                Onip_addressChanged();
+                if (_ip_address != value)
+                {
+                    Onip_addressChanging(value);
+                    ReportPropertyChanging("ip_address");
+                    _ip_address = StructuralObject.SetValidValue(value, false);
+                    ReportPropertyChanged("ip_address");
+                    Onip_addressChanged();
+                }
             }
         }
         private global::System.String _ip_address;
@@ -676,7 +900,7 @@ namespace Data
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
         [DataMemberAttribute()]
         public global::System.DateTime date_added
         {
@@ -686,11 +910,14 @@ namespace Data
             }
             set
             {
-                Ondate_addedChanging(value);
-                ReportPropertyChanging("date_added");
-                _date_added = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("date_added");
-                Ondate_addedChanged();
+                if (_date_added != value)
+                {
+                    Ondate_addedChanging(value);
+                    ReportPropertyChanging("date_added");
+                    _date_added = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("date_added");
+                    Ondate_addedChanged();
+                }
             }
         }
         private global::System.DateTime _date_added;
@@ -720,119 +947,6 @@ namespace Data
         private Nullable<global::System.Int32> _user_id;
         partial void Onuser_idChanging(Nullable<global::System.Int32> value);
         partial void Onuser_idChanged();
-
-        #endregion
-    
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("statusModel", "FK__status_li__statu__0BC6C43E", "status")]
-        public status status
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<status>("statusModel.FK__status_li__statu__0BC6C43E", "status").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<status>("statusModel.FK__status_li__statu__0BC6C43E", "status").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<status> statusReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<status>("statusModel.FK__status_li__statu__0BC6C43E", "status");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<status>("statusModel.FK__status_li__statu__0BC6C43E", "status", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("statusModel", "FK__status_li__user___0CBAE877", "user")]
-        public user user
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<user>("statusModel.FK__status_li__user___0CBAE877", "user").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<user>("statusModel.FK__status_li__user___0CBAE877", "user").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<user> userReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<user>("statusModel.FK__status_li__user___0CBAE877", "user");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<user>("statusModel.FK__status_li__user___0CBAE877", "user", value);
-                }
-            }
-        }
-
-        #endregion
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="statusModel", Name="status_view")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class status_view : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new status_view object.
-        /// </summary>
-        /// <param name="status_view_id">Initial value of the status_view_id property.</param>
-        /// <param name="status_id">Initial value of the status_id property.</param>
-        /// <param name="ip_address">Initial value of the ip_address property.</param>
-        /// <param name="date_added">Initial value of the date_added property.</param>
-        public static status_view Createstatus_view(global::System.Int32 status_view_id, global::System.Int32 status_id, global::System.String ip_address, global::System.DateTime date_added)
-        {
-            status_view status_view = new status_view();
-            status_view.status_view_id = status_view_id;
-            status_view.status_id = status_id;
-            status_view.ip_address = ip_address;
-            status_view.date_added = date_added;
-            return status_view;
-        }
-
-        #endregion
-        #region Primitive Properties
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -860,102 +974,6 @@ namespace Data
         private global::System.Int32 _status_view_id;
         partial void Onstatus_view_idChanging(global::System.Int32 value);
         partial void Onstatus_view_idChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 status_id
-        {
-            get
-            {
-                return _status_id;
-            }
-            set
-            {
-                Onstatus_idChanging(value);
-                ReportPropertyChanging("status_id");
-                _status_id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("status_id");
-                Onstatus_idChanged();
-            }
-        }
-        private global::System.Int32 _status_id;
-        partial void Onstatus_idChanging(global::System.Int32 value);
-        partial void Onstatus_idChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String ip_address
-        {
-            get
-            {
-                return _ip_address;
-            }
-            set
-            {
-                Onip_addressChanging(value);
-                ReportPropertyChanging("ip_address");
-                _ip_address = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("ip_address");
-                Onip_addressChanged();
-            }
-        }
-        private global::System.String _ip_address;
-        partial void Onip_addressChanging(global::System.String value);
-        partial void Onip_addressChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.DateTime date_added
-        {
-            get
-            {
-                return _date_added;
-            }
-            set
-            {
-                Ondate_addedChanging(value);
-                ReportPropertyChanging("date_added");
-                _date_added = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("date_added");
-                Ondate_addedChanged();
-            }
-        }
-        private global::System.DateTime _date_added;
-        partial void Ondate_addedChanging(global::System.DateTime value);
-        partial void Ondate_addedChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int32> user_id
-        {
-            get
-            {
-                return _user_id;
-            }
-            set
-            {
-                Onuser_idChanging(value);
-                ReportPropertyChanging("user_id");
-                _user_id = StructuralObject.SetValidValue(value);
-                ReportPropertyChanged("user_id");
-                Onuser_idChanged();
-            }
-        }
-        private Nullable<global::System.Int32> _user_id;
-        partial void Onuser_idChanging(Nullable<global::System.Int32> value);
-        partial void Onuser_idChanged();
 
         #endregion
     
@@ -967,16 +985,16 @@ namespace Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("statusModel", "FK__status_vi__statu__117F9D94", "status")]
+        [EdmRelationshipNavigationPropertyAttribute("statusModel", "FK__status_vi__statu__0BC6C43E", "status")]
         public status status
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<status>("statusModel.FK__status_vi__statu__117F9D94", "status").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<status>("statusModel.FK__status_vi__statu__0BC6C43E", "status").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<status>("statusModel.FK__status_vi__statu__117F9D94", "status").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<status>("statusModel.FK__status_vi__statu__0BC6C43E", "status").Value = value;
             }
         }
         /// <summary>
@@ -988,13 +1006,13 @@ namespace Data
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<status>("statusModel.FK__status_vi__statu__117F9D94", "status");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<status>("statusModel.FK__status_vi__statu__0BC6C43E", "status");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<status>("statusModel.FK__status_vi__statu__117F9D94", "status", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<status>("statusModel.FK__status_vi__statu__0BC6C43E", "status", value);
                 }
             }
         }
@@ -1005,16 +1023,16 @@ namespace Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("statusModel", "FK__status_vi__user___1273C1CD", "user")]
+        [EdmRelationshipNavigationPropertyAttribute("statusModel", "FK__status_vi__user___0CBAE877", "user")]
         public user user
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<user>("statusModel.FK__status_vi__user___1273C1CD", "user").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<user>("statusModel.FK__status_vi__user___0CBAE877", "user").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<user>("statusModel.FK__status_vi__user___1273C1CD", "user").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<user>("statusModel.FK__status_vi__user___0CBAE877", "user").Value = value;
             }
         }
         /// <summary>
@@ -1026,13 +1044,13 @@ namespace Data
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<user>("statusModel.FK__status_vi__user___1273C1CD", "user");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<user>("statusModel.FK__status_vi__user___0CBAE877", "user");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<user>("statusModel.FK__status_vi__user___1273C1CD", "user", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<user>("statusModel.FK__status_vi__user___0CBAE877", "user", value);
                 }
             }
         }
@@ -1187,18 +1205,18 @@ namespace Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("statusModel", "FK__status_li__user___0CBAE877", "status_like")]
+        [EdmRelationshipNavigationPropertyAttribute("statusModel", "FK__status_li__user___09DE7BCC", "status_like")]
         public EntityCollection<status_like> status_like
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<status_like>("statusModel.FK__status_li__user___0CBAE877", "status_like");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<status_like>("statusModel.FK__status_li__user___09DE7BCC", "status_like");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<status_like>("statusModel.FK__status_li__user___0CBAE877", "status_like", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<status_like>("statusModel.FK__status_li__user___09DE7BCC", "status_like", value);
                 }
             }
         }
@@ -1209,18 +1227,18 @@ namespace Data
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("statusModel", "FK__status_vi__user___1273C1CD", "status_view")]
+        [EdmRelationshipNavigationPropertyAttribute("statusModel", "FK__status_vi__user___0CBAE877", "status_view")]
         public EntityCollection<status_view> status_view
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<status_view>("statusModel.FK__status_vi__user___1273C1CD", "status_view");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<status_view>("statusModel.FK__status_vi__user___0CBAE877", "status_view");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<status_view>("statusModel.FK__status_vi__user___1273C1CD", "status_view", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<status_view>("statusModel.FK__status_vi__user___0CBAE877", "status_view", value);
                 }
             }
         }
