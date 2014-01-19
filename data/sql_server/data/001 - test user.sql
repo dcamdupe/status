@@ -5,10 +5,10 @@ DECLARE @user_id int
 SELECT @user_id = SCOPE_IDENTITY()
 
 INSERT INTO password
-(user_id
+(user_id,
 salt,
 password)
 VALUES
 (@user_id,
-'825fea554a7443e98d3049374c15c90f',
-)
+'$2a$10$w14lcO8AfT9ng5D9FfPz3.',
+'$2a$10$w14lcO8AfT9ng5D9FfPz3.UOwaFx2CWmUSYG5HyG/3TPHyy5Itv9m')

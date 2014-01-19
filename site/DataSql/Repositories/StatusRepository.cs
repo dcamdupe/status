@@ -8,10 +8,14 @@ using System.Data.Entity;
 
 namespace Data.Repositories
 {
-    public class StatusRepository
+    public class StatusRepository : IStatusRepository
     {
-        // TODO: need to build the connection string
-        private statusEntities _db;
+        private statusContainer _db;
+
+        public StatusRepository(string connectionString)
+        {
+            _db = ConnectionBuilder.Create(connectionString);
+        }
 
         public int Add(string message, int userId)
         {

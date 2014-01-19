@@ -4,11 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using site.Models;
+using SiteLogic;
 
 namespace site.Controllers
 {
     public class UserController : Controller
     {
+        private Authentication _authentication;
+
+        public UserController(Authentication authentication)
+        {
+            _authentication = authentication;
+        }
+
         //
         // GET: /User/
 
@@ -22,7 +30,8 @@ namespace site.Controllers
         {
             if (ModelState.IsValid)
             {
-                // TODO: take them to a login page
+                var result = _authentication.AuthenticateUser(auth.Login, auth.Password);
+
                 return View(auth);
             }
 

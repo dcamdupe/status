@@ -14,12 +14,17 @@ Invoke-Sqlcmd -Query "IF (EXISTS (SELECT name FROM sysdatabases WHERE name = '$n
 	ALTER DATABASE [$name] SET MULTI_USER;" -ServerInstance "(local)"
 }
 
+function run_scripts_dir([string] $path)
+{
+	get-childitem "$path\\*.sql" | foreach {
+		write-host "executing $_"
+		Invoke-Sqlcmd -Database "status" -InputFile $_ -ServerInstance "(local)" }
+}
+
 create_db('status')
 
 # first query seems to be failing, later ones are fine. This hack seems to stop the later scripts from failing.
 Invoke-Sqlcmd -Query "SELECT * from information_schema.tables" -ServerInstance "(local)" -Database "status"
 
-$tablesPath = resolve-path "..\\tables\\"
-get-childitem "$tablesPath\\*.sql" | foreach {
-	write-host "executing $_"
-	Invoke-Sqlcmd -Database "status" -InputFile $_ -ServerInstance "(local)" }
+run_scripts_dir(resolve-path "..\\tables\\");
+run_scripts_dir(resolve-path "..\\data\\");
