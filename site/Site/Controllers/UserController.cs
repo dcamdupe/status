@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using site.Models;
+using Site.Models;
 using SiteLogic;
+using Site.Services;
 
-namespace site.Controllers
+namespace Site.Controllers
 {
     public class UserController : Controller
     {
-        private Authentication _authentication;
+        private IAuthenticationService _authenticationService;
 
-        public UserController(Authentication authentication)
+        public UserController(IAuthenticationService authenticationService)
         {
-            _authentication = authentication;
+            _authenticationService = authenticationService;
         }
 
         //
@@ -30,11 +31,10 @@ namespace site.Controllers
         {
             if (ModelState.IsValid)
             {
-                var result = _authentication.AuthenticateUser(auth.Login, auth.Password);
-
-                if (result)
+                if (_authenticationService.AutheticateUser(HttpContext, auth.Login, auth.Password))
                 {
-                    // TODO: set session to logged in & redirect
+                    var userId = HttpContext.Session["userId"];
+                    // TODO: redirect
                 }
 
                 return View(auth);

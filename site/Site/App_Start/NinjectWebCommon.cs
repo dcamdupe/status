@@ -1,7 +1,7 @@
-[assembly: WebActivator.PreApplicationStartMethod(typeof(site.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(site.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(Site.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivator.ApplicationShutdownMethodAttribute(typeof(Site.App_Start.NinjectWebCommon), "Stop")]
 
-namespace site.App_Start
+namespace Site.App_Start
 {
     using System;
     using System.Web;
@@ -14,6 +14,7 @@ namespace site.App_Start
     using Data.Repositories;
     using Data;
     using SiteLogic;
+    using Site.Services;
 
     public static class NinjectWebCommon 
     {
@@ -63,7 +64,8 @@ namespace site.App_Start
             kernel.Bind<IStatusRepository>().To<StatusRepository>();
             kernel.Bind<IUserPasswordRepository>().To<UserPasswordRepository>();
             kernel.Bind<IUserRepository>().To<UserRepository>();
-            kernel.Bind<Authentication>().ToSelf();
+            kernel.Bind<IAuthenticationService>().To<AuthenticationService>();
+            kernel.Bind<IAuthentication>().To<Authentication>();
         }
     }
 }

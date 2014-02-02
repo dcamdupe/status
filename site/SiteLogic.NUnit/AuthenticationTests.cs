@@ -37,7 +37,7 @@ namespace SiteLogic.NUnit
         {
             var Auth = new Authentication(_userRepo.Object, _passwordRepo.Object);
 
-            Assert.AreEqual(false, Auth.AuthenticateUser("test", "test"));
+            Assert.AreEqual(null, Auth.AuthenticateUser("test", "test"));
             _userRepo.Verify(r => r.GetByUserName("test"), Times.Once);
             _passwordRepo.Verify(r => r.GetById(It.IsAny<int>()), Times.Never);
         }
@@ -47,7 +47,7 @@ namespace SiteLogic.NUnit
         {
             var Auth = new Authentication(_userRepo.Object, _passwordRepo.Object);
 
-            Assert.AreEqual(false, Auth.AuthenticateUser(validLogin, "test"));
+            Assert.AreEqual(null, Auth.AuthenticateUser(validLogin, "test"));
             _userRepo.Verify(r => r.GetByUserName(validLogin), Times.Once);
             _passwordRepo.Verify(r => r.GetById(It.IsAny<int>()), Times.Once);
         }
@@ -57,7 +57,7 @@ namespace SiteLogic.NUnit
         {
             var Auth = new Authentication(_userRepo.Object, _passwordRepo.Object);
 
-            Assert.AreEqual(true, Auth.AuthenticateUser(validLogin, validPassword));
+            Assert.AreEqual(validUser.UserId, Auth.AuthenticateUser(validLogin, validPassword));
             _userRepo.Verify(r => r.GetByUserName(validLogin), Times.Once);
             _passwordRepo.Verify(r => r.GetById(It.IsAny<int>()), Times.Once);
         }

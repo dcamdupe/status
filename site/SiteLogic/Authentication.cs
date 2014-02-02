@@ -7,7 +7,7 @@ using BCrypt.Net;
 
 namespace SiteLogic
 {
-    public class Authentication
+    public class Authentication : IAuthentication
     {
         private IUserRepository _userRepo;
         private IUserPasswordRepository _passwordRepo;
@@ -18,19 +18,22 @@ namespace SiteLogic
             _passwordRepo = passwordRepo;
         }
 
-        public bool AuthenticateUser(string login, string password)
+        public int? AuthenticateUser(string login, string password)
         {
             var user = _userRepo.GetByUserName(login);
             if (user == null)
-                return false;
+                return null;
 
             var passwordDetails = _passwordRepo.GetById(user.UserId);
             var hashedPassword = CalculatePassword(password, passwordDetails.Salt);
 
-            return hashedPassword == passwordDetails.Password;
+            if (hashedPassword == passwordDetails.Password)
+                return user.UserId;
+
+            return null;
         }
 
-        public string CalculatePassword(string password, string salt)
+        internal string CalculatePassword(string password, string salt)
         {
             return BCrypt.Net.BCrypt.HashPassword(password, salt);
         }
