@@ -4,6 +4,7 @@ DECLARE @user_id int
 
 SELECT @user_id = SCOPE_IDENTITY()
 
+-- password represents validPassword
 INSERT INTO password
 (user_id,
 salt,

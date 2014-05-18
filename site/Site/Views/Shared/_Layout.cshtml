@@ -17,7 +17,12 @@
                         <ul id="menu">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("New Post", "NewPost", "Post")</li>
-                            <li>@Html.ActionLink("Login", "Index", "User")</li>
+                            @if (!@ViewBag.IsLoggedIn) {
+                                <li>@Html.ActionLink("Login", "Index", "User")</li>
+                            }
+                            @if (@ViewBag.IsLoggedIn) {
+                                <li>@Html.ActionLink("Logout", "Logout", "User")</li>
+                            }
                             <li>@Html.TextBox("Search")</li>
                         </ul>
                     </nav>
