@@ -19,7 +19,7 @@
             <div class="content-wrapper">
                 <div class="collapse navbar-collapse">
                     <nav class="navbar navbar-default" role="navigation">
-                        <ul id="menu" class="nav navbar-nav">
+                        <ul id="menu" class="nav navbar-nav navbar-right">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("New Post", "NewPost", "Post")</li>
                             @if (!@ViewBag.IsLoggedIn)
@@ -30,12 +30,14 @@
                             {
                                 <li>@Html.ActionLink("Logout", "Logout", "User")</li>
                             }
+                            <li>
+                                <form class="navbar-form navbar-right" role="search">
+                                    <div class="form-group">
+                                        @Html.TextBox("Search", "", new { placeholder = "Search", Class = "form-control" })
+                                    </div>
+                                </form>
+                            </li>
                         </ul>
-                        <form class="navbar-form navbar-left" role="search">
-                            <div class="form-group">
-                                @Html.TextBox("Search", "", new { placeholder = "Search", Class = "form-control" })
-                            </div>
-                        </form>
                     </nav>
                 </div>
             </div>
