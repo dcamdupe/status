@@ -1,21 +1,22 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    ViewBag.IsLoggedIn = (Context.Session["userId"] != null);
+    ViewBag.IsLoggedIn = Site.Services.HttpContextHelpers.IsAuthenicated(Context);
 }
 
 @model Site.Models.AuthenticationDetails
-@section featured {
-    <section>
-        Here be logins
-    </section>
-}
-@using (Html.BeginForm("Index", "User", FormMethod.Post))
-{
-    <div>
-        <div>@Html.LabelFor(model => model.Login) : @Html.TextBoxFor(model => model.Login)
-                @Html.ValidationMessageFor(model => model.Login)</div>
-        <div>@Html.LabelFor(model => model.Password) @Html.TextBoxFor(model => model.Password)
-                @Html.ValidationMessageFor(model => model.Password)</div>
-        <div><input type="submit" value="Login" /></div>
-    </div>
-}
+
+<div class="container">
+    <h2>Please enter login and password</hs>
+    @using (Html.BeginForm("Index", "User", FormMethod.Post, new { role = "form" }))
+    {
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.Login, new { placeholder = "Login" })
+            @Html.ValidationMessageFor(model => model.Login)
+        </div>
+        <div class="form-group">
+            @Html.TextBoxFor(model => model.Password, new { placeholder = "Password" })
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+        <div><input type="submit" value="Login" class="btn btn-default" /></div>
+    }
+</div>

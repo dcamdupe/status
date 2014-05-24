@@ -1,11 +1,6 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    ViewBag.IsLoggedIn = (Context.Session["userId"] != null);
+    ViewBag.IsLoggedIn = Site.Services.HttpContextHelpers.IsAuthenicated(this.Context);
 }
 
-@section featured {
-    <section>
-        Whoa! Features
-    </section>
-}
 <div>Here comes the body!</div>

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Site.Models;
 using SiteLogic;
 using Site.Services;
+using System.Web.Security;
 
 namespace Site.Controllers
 {
@@ -33,7 +34,7 @@ namespace Site.Controllers
             {
                 if (_authenticationService.AutheticateUser(HttpContext, auth.Login, auth.Password))
                 {
-                    var userId = HttpContext.Session["userId"];
+                    FormsAuthentication.SetAuthCookie(auth.Login, true);
                     return RedirectToAction("index", "");
                 }
 
@@ -46,7 +47,7 @@ namespace Site.Controllers
         [HttpGet]
         public ActionResult Logout(AuthenticationDetails auth)
         {
-            this.Session.Abandon();
+            FormsAuthentication.SignOut();
             return RedirectToAction("index", "");
         }
     }
