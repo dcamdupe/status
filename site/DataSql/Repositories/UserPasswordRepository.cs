@@ -10,21 +10,17 @@ namespace Data.Repositories
 {
     public class UserPasswordRepository : IUserPasswordRepository
     {
-        private statusContainer _db;
-
-        public UserPasswordRepository(ConnectionDetails connection)
-        {
-            _db = ConnectionBuilder.Create(connection.ConnectionString);
-        }
-
         public UserPassword GetById(int userId)
         {
-            var pwd = _db.passwords.SingleOrDefault(p => p.user_id == userId);
+            using (var db = new statusContainer())
+            {
+                var pwd = db.passwords.SingleOrDefault(p => p.user_id == userId);
 
-            if (pwd != null)
-                return new UserPassword { Password = pwd.password1, Salt = pwd.salt };
+                if (pwd != null)
+                    return new UserPassword { Password = pwd.password1, Salt = pwd.salt };
 
-            return null;
+                return null;
+            }
         }
     }
 }

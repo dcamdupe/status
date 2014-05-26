@@ -58,9 +58,6 @@ namespace Site.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            var connString = System.Configuration.ConfigurationManager.ConnectionStrings["status"].ConnectionString;
-            kernel.Bind<ConnectionDetails>().ToConstructor(_ => new ConnectionDetails(connString) );
-
             kernel.Bind<IStatusRepository>().To<StatusRepository>();
             kernel.Bind<IUserPasswordRepository>().To<UserPasswordRepository>();
             kernel.Bind<IUserRepository>().To<UserRepository>();
