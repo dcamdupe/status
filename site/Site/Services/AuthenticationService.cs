@@ -21,7 +21,6 @@ namespace Site.Services
             var userId = _authentication.AuthenticateUser(login, password);
             if (userId.HasValue)
             {
-                context.Session.Add("userId", userId.Value);
                 return true;
             }
             return false;

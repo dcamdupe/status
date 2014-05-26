@@ -84,7 +84,7 @@ namespace Data.Repositories
                 db.SaveChanges();
             }
         }
-        public List<Status> Search(int? userId, string search)
+        public List<Status> Search(int? userId, string search, int page, int itemsPerPage)
         {
             using (var db = new statusContainer())
             {
@@ -93,21 +93,26 @@ namespace Data.Repositories
                 if (userId.HasValue)
                     statusList = statusList.Where(s => s.user_id == userId.Value);
 
-                return statusList.Select(s => MapStatus(s)).ToList();
+                return PaginateResults(statusList, page, itemsPerPage);
             }
         }
         public List<Status> GetHistory(int userId, int page, int itemsPerPage)
         {
             using (var db = new statusContainer())
             {
-                var paginationDetails = PaginationTools.ConvertPagesToCount(page, itemsPerPage);
-                return db.status
-                    .Where(s => s.user_id == userId)
+                return PaginateResults(db.status.Where(s => s.user_id == userId), page, itemsPerPage);
+            }
+        }
+
+        private List<Status> PaginateResults(IEnumerable<status> statusList, int page, int itemsPerPage)
+        {
+            var paginationDetails = PaginationTools.ConvertPagesToCount(page, itemsPerPage);
+            return statusList
+                    .OrderBy(s => s.date_added)
                     .Skip(paginationDetails.Item1)
                     .Take(paginationDetails.Item2)
                     .Select(s => MapStatus(s))
                     .ToList();
-            }
         }
     }
 }

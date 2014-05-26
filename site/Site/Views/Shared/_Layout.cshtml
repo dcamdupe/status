@@ -21,7 +21,6 @@
                     <nav class="navbar navbar-default" role="navigation">
                         <ul id="menu" class="nav navbar-nav navbar-right">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("New Post", "NewPost", "Post")</li>
                             @if (!@ViewBag.IsLoggedIn)
                             {
                                 <li>@Html.ActionLink("Login", "Index", "User")</li>
@@ -29,6 +28,8 @@
                             @if (@ViewBag.IsLoggedIn)
                             {
                                 <li>@Html.ActionLink("Logout", "Logout", "User")</li>
+                                <li>@Html.ActionLink("History", "", "Status")</li>
+                                <li>@Html.ActionLink("New Post", "NewPost", "Post")</li>
                             }
                             <li>
                                 <form class="navbar-form navbar-right" role="search">

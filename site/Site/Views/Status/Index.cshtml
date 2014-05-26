@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Status History";
+    ViewBag.IsLoggedIn = Site.Services.HttpContextHelpers.IsAuthenicated(this.Context);
+}
+
+@model Site.Models.StatusList
+
+<div class="Container">
+@foreach (var m in Model.Status)
+{
+    <div class="panel">
+        <div>
+            <div style="float: left;">
+                @m.Message
+            </div>
+            <div style="float: right;">
+                Like: @m.LikeCount
+                View: @m.ViewCount
+            </div>
+        </div>
+        <div><span>@m.DateAdded</span></div>
+    </div>
+}
+</div>
