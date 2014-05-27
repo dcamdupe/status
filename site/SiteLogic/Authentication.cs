@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using DataInterfaces.Repositories;
 using BCrypt.Net;
+using DataInterfaces.Models;
 
 namespace SiteLogic
 {
@@ -18,7 +19,7 @@ namespace SiteLogic
             _passwordRepo = passwordRepo;
         }
 
-        public int? AuthenticateUser(string login, string password)
+        public User AuthenticateUser(string login, string password)
         {
             var user = _userRepo.GetByUserName(login);
             if (user == null)
@@ -28,7 +29,7 @@ namespace SiteLogic
             var hashedPassword = CalculatePassword(password, passwordDetails.Salt);
 
             if (hashedPassword == passwordDetails.Password)
-                return user.UserId;
+                return user;
 
             return null;
         }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.SessionState;
 using SiteLogic;
+using DataInterfaces.Models;
 
 namespace Site.Services
 {
@@ -16,14 +17,14 @@ namespace Site.Services
             _authentication = authentication;
         }
 
-        public bool AutheticateUser(HttpContextBase context, string login, string password)
+        public User AutheticateUser(HttpContextBase context, string login, string password)
         {
-            var userId = _authentication.AuthenticateUser(login, password);
-            if (userId.HasValue)
+            var user = _authentication.AuthenticateUser(login, password);
+            if (user != null)
             {
-                return true;
+                return user;
             }
-            return false;
+            return null;
         }
     }
 }

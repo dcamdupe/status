@@ -56,6 +56,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataInterfaces\DataInterfaces.csproj">
+      <Project>{c35262a7-7fe6-47db-882c-59da861a52fb}</Project>
+      <Name>DataInterfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SiteLogic\SiteLogic.csproj">
       <Project>{1A88530F-3CB1-4F4F-841B-43184BF89D93}</Project>
       <Name>SiteLogic</Name>

@@ -32,9 +32,11 @@ namespace Site.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_authenticationService.AutheticateUser(HttpContext, auth.Login, auth.Password))
+                var user = _authenticationService.AutheticateUser(HttpContext, auth.Login, auth.Password);
+                if (user != null)
                 {
                     FormsAuthentication.SetAuthCookie(auth.Login, true);
+                    Session["UserId"] = user.UserId;
                     return RedirectToAction("index", "");
                 }
 
