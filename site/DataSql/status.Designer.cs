@@ -8,12 +8,13 @@
 //------------------------------------------------------------------------------
 
 using System;
+using System.ComponentModel;
+using System.Data.EntityClient;
 using System.Data.Objects;
 using System.Data.Objects.DataClasses;
-using System.Data.EntityClient;
-using System.ComponentModel;
-using System.Xml.Serialization;
+using System.Linq;
 using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
@@ -24,6 +25,7 @@ using System.Runtime.Serialization;
 [assembly: EdmRelationshipAttribute("status", "FK__status_vi__statu__117F9D94", "status", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data.status), "status_view", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.status_view), true)]
 [assembly: EdmRelationshipAttribute("status", "FK__status_li__user___0CBAE877", "user", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.user), "status_like", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.status_like), true)]
 [assembly: EdmRelationshipAttribute("status", "FK__status_vi__user___1273C1CD", "user", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(Data.user), "status_view", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.status_view), true)]
+[assembly: EdmRelationshipAttribute("status", "FK__api_sessi__user___182C9B23", "user", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(Data.user), "api_session", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(Data.api_session), true)]
 
 #endregion
 
@@ -154,8 +156,25 @@ namespace Data
             }
         }
         private ObjectSet<user> _users;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<api_session> api_session
+        {
+            get
+            {
+                if ((_api_session == null))
+                {
+                    _api_session = base.CreateObjectSet<api_session>("api_session");
+                }
+                return _api_session;
+            }
+        }
+        private ObjectSet<api_session> _api_session;
 
         #endregion
+
         #region AddTo Methods
     
         /// <summary>
@@ -197,14 +216,199 @@ namespace Data
         {
             base.AddObject("users", user);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the api_session EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToapi_session(api_session api_session)
+        {
+            base.AddObject("api_session", api_session);
+        }
 
         #endregion
+
     }
-    
 
     #endregion
-    
+
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="status", Name="api_session")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class api_session : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new api_session object.
+        /// </summary>
+        /// <param name="session_id">Initial value of the session_id property.</param>
+        /// <param name="user_id">Initial value of the user_id property.</param>
+        /// <param name="date_created">Initial value of the date_created property.</param>
+        /// <param name="expires">Initial value of the expires property.</param>
+        public static api_session Createapi_session(global::System.Guid session_id, global::System.Int32 user_id, global::System.DateTime date_created, global::System.DateTime expires)
+        {
+            api_session api_session = new api_session();
+            api_session.session_id = session_id;
+            api_session.user_id = user_id;
+            api_session.date_created = date_created;
+            api_session.expires = expires;
+            return api_session;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Guid session_id
+        {
+            get
+            {
+                return _session_id;
+            }
+            set
+            {
+                if (_session_id != value)
+                {
+                    Onsession_idChanging(value);
+                    ReportPropertyChanging("session_id");
+                    _session_id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("session_id");
+                    Onsession_idChanged();
+                }
+            }
+        }
+        private global::System.Guid _session_id;
+        partial void Onsession_idChanging(global::System.Guid value);
+        partial void Onsession_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 user_id
+        {
+            get
+            {
+                return _user_id;
+            }
+            set
+            {
+                Onuser_idChanging(value);
+                ReportPropertyChanging("user_id");
+                _user_id = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("user_id");
+                Onuser_idChanged();
+            }
+        }
+        private global::System.Int32 _user_id;
+        partial void Onuser_idChanging(global::System.Int32 value);
+        partial void Onuser_idChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime date_created
+        {
+            get
+            {
+                return _date_created;
+            }
+            set
+            {
+                Ondate_createdChanging(value);
+                ReportPropertyChanging("date_created");
+                _date_created = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("date_created");
+                Ondate_createdChanged();
+            }
+        }
+        private global::System.DateTime _date_created;
+        partial void Ondate_createdChanging(global::System.DateTime value);
+        partial void Ondate_createdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.DateTime expires
+        {
+            get
+            {
+                return _expires;
+            }
+            set
+            {
+                OnexpiresChanging(value);
+                ReportPropertyChanging("expires");
+                _expires = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("expires");
+                OnexpiresChanged();
+            }
+        }
+        private global::System.DateTime _expires;
+        partial void OnexpiresChanging(global::System.DateTime value);
+        partial void OnexpiresChanged();
+
+        #endregion
+
+    
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("status", "FK__api_sessi__user___182C9B23", "user")]
+        public user user
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<user>("status.FK__api_sessi__user___182C9B23", "user").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<user>("status.FK__api_sessi__user___182C9B23", "user").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<user> userReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<user>("status.FK__api_sessi__user___182C9B23", "user");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<user>("status.FK__api_sessi__user___182C9B23", "user", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -228,6 +432,7 @@ namespace Data
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -306,6 +511,7 @@ namespace Data
         partial void Onpassword1Changed();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -348,6 +554,7 @@ namespace Data
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -378,6 +585,7 @@ namespace Data
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -480,6 +688,7 @@ namespace Data
         partial void Ondate_addedChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -566,6 +775,7 @@ namespace Data
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -596,6 +806,7 @@ namespace Data
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -722,6 +933,7 @@ namespace Data
         partial void Onuser_idChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -802,6 +1014,7 @@ namespace Data
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -832,6 +1045,7 @@ namespace Data
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -958,6 +1172,7 @@ namespace Data
         partial void Onuser_idChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1038,6 +1253,7 @@ namespace Data
         }
 
         #endregion
+
     }
     
     /// <summary>
@@ -1064,6 +1280,7 @@ namespace Data
         }
 
         #endregion
+
         #region Primitive Properties
     
         /// <summary>
@@ -1118,6 +1335,7 @@ namespace Data
         partial void Onuser_nameChanged();
 
         #endregion
+
     
         #region Navigation Properties
     
@@ -1224,10 +1442,34 @@ namespace Data
                 }
             }
         }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("status", "FK__api_sessi__user___182C9B23", "api_session")]
+        public EntityCollection<api_session> api_session
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<api_session>("status.FK__api_sessi__user___182C9B23", "api_session");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<api_session>("status.FK__api_sessi__user___182C9B23", "api_session", value);
+                }
+            }
+        }
 
         #endregion
+
     }
 
     #endregion
+
     
 }
