@@ -56,19 +56,16 @@ namespace Site.Services
             throw new NotImplementedException();
         }
 
-        public void AddView(int statusId, string IpAdress, int? userId)
-        {
-            throw new NotImplementedException();
-        }
-
         public int Add(string Message, int userId)
         {
             return _statusRepository.Add(Message, userId);
         }
 
-        public Status Get(int statusId)
+        public Status Get(int statusId, ViewUser user)
         {
-            return MapStatus(_statusRepository.Get(statusId));
+            var status = _statusRepository.Get(statusId);
+            _statusRepository.AddView(statusId, user.IpAddress, user.UserId);
+            return MapStatus(status);
         }
 
         internal Status MapStatus(DataInterfaces.Models.Status status)

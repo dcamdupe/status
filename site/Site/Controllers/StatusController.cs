@@ -12,14 +12,16 @@ namespace Site.Controllers
 {
     public class StatusController : Controller
     {
+        private HttpRequestBase _requestBase;
         private IStatusService _statusService;
         private HttpSessionStateBase _session;
         public const int ItemsPerPage = 10;
 
-        public StatusController(IStatusService statusService, HttpSessionStateBase session)
+        public StatusController(IStatusService statusService, HttpSessionStateBase session, HttpRequestBase requestBase)
         {
             _statusService = statusService;
             _session = session;
+            _requestBase = requestBase;
         }
 
         [Authorize]
@@ -47,7 +49,8 @@ namespace Site.Controllers
         [Authorize]
         public ActionResult Single(int statusId)
         {
-            return View("Single", _statusService.Get(statusId));
+            var viewUser = new ViewUser { UserId = (int)_session["UserId"], IpAddress = _requestBase.UserHostAddress };
+            return View("Single", _statusService.Get(statusId, viewUser));
         }
 
         [Authorize]
@@ -59,6 +62,13 @@ namespace Site.Controllers
             var statusList = _statusService.Search(searchText, page.Value, ItemsPerPage);
 
             return View("Search", statusList);
+        }
+
+        [Authorize]
+        public ActionResult AddLike(int statusId)
+        {
+            _statusService.AddLike(statusId, _requestBase.UserHostAddress, (int)_session["UserId"]);
+            return RedirectToAction("Single", new { statusId = statusId });
         }
     }
 }

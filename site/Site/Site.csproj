@@ -128,9 +128,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AuthenticationDetails.cs" />
+    <Compile Include="Models\Pagination.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\SearchResults.cs" />
     <Compile Include="Models\StatusList.cs" />
+    <Compile Include="Models\ViewUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\HttpContextHelpers.cs" />

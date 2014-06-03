@@ -11,9 +11,8 @@ namespace Site.Services
         StatusList GetHistory(int userId, int pageNumber, int itemsPerPage);
         SearchResults Search(string searchText, int pageNumber, int itemsPerPage);
         void AddLike(int statusId, string IpAdress, int? userId);
-        void AddView(int statusId, string IpAdress, int? userId);
         int Add(string Message, int userId);
-        Status Get(int statusId);
+        Status Get(int statusId, ViewUser viewUser);
 
     }
 }
