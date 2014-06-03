@@ -1,2 +1,9 @@
 TODO:
 
+# pagination in history
+# click on status item in history to display single item display
+# update single item display
+# resolve session auth problems (ie forms auth says logged in, but we have no userId)
+# implement search
+# display search when not logged in
+# implement like buttons
