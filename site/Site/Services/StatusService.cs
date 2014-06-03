@@ -18,20 +18,37 @@ namespace Site.Services
 
         public StatusList GetHistory(int userId, int pageNumber, int itemsPerPage)
         {
-            var items = _statusRepository.GetHistory(userId, pageNumber, itemsPerPage)
-                .Select(s => MapStatus(s));
+            var history = _statusRepository.GetHistory(userId, pageNumber, itemsPerPage);
+            var items = history.Items.Select(s => MapStatus(s));
 
-            return new StatusList
+            return MapStatusList(items, pageNumber, itemsPerPage, history.TotalItems);
+        }
+
+        public SearchResults Search(string searchText, int pageNumber, int itemsPerPage)
+        {
+            var search = _statusRepository.Search(null, searchText, pageNumber, itemsPerPage);
+            var items = search.Items.Select(s => MapStatus(s));
+
+            return new SearchResults
             {
-                Status = items,
-                Page = pageNumber,
-                ItemsPerPage = itemsPerPage
+                StatusList = MapStatusList(items, pageNumber, itemsPerPage, search.TotalItems),
+                Search = searchText
             };
         }
 
-        public StatusList Search(int? userId, string searchText, int pageNumber, int itemsPerPage)
+        public StatusList MapStatusList(IEnumerable<Status> statusList, int pageNumber, int itemsPerPage, int totalItems)
         {
-            throw new NotImplementedException();
+            var pages = totalItems / itemsPerPage;
+            if (totalItems % itemsPerPage != 0)
+                pages++;
+
+            return new StatusList
+            {
+                Status = statusList,
+                Page = pageNumber,
+                ItemsPerPage = itemsPerPage,
+                PageCount = pages
+            };
         }
 
         public void AddLike(int statusId, string IpAdress, int? userId)

@@ -9,7 +9,7 @@ namespace Site.Services
     public interface IStatusService
     {
         StatusList GetHistory(int userId, int pageNumber, int itemsPerPage);
-        StatusList Search(int? userId, string searchText, int pageNumber, int itemsPerPage);
+        SearchResults Search(string searchText, int pageNumber, int itemsPerPage);
         void AddLike(int statusId, string IpAdress, int? userId);
         void AddView(int statusId, string IpAdress, int? userId);
         int Add(string Message, int userId);

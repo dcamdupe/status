@@ -9,6 +9,7 @@ namespace Site.Models
     {
         public IEnumerable<Status> Status { get; set; }
         public int Page { get; set; }
-        public int ItemsPerPage = 10;
+        public int ItemsPerPage {get;set;}
+        public int PageCount { get; set; }
     }
 }

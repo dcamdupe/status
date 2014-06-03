@@ -21,21 +21,21 @@ namespace Site.NUnit
         private const int UserId = 1;
         private const int PageNumber = 1;
         private const int ItemsPerPage = 10;
-        private List<Status> _statusList;
+        private StatusList _statusList;
 
         [SetUp]
         public void Setup()
         {
             _statusRepo = new Mock<IStatusRepository>();
 
-            _statusList = new List<Status>();
+            _statusList = new StatusList { TotalItems = 10 };
             for (var i = 1; i <= 10; i++)
             {
-                _statusList.Add(new Status { AddedBy = new User { UserId = UserId, UserName = "A User" }, DateAdded = DateTime.Now.AddDays(-1 * i), Likes = i, Views = i, Message = i.ToString(), StatusId = i });
+                _statusList.Items.Add(new Status { AddedBy = new User { UserId = UserId, UserName = "A User" }, DateAdded = DateTime.Now.AddDays(-1 * i), Likes = i, Views = i, Message = i.ToString(), StatusId = i });
             }
 
             _statusRepo.Setup(s => s.GetHistory(UserId, PageNumber, ItemsPerPage)).Returns(_statusList);
-            _statusRepo.Setup(s => s.Get(It.IsAny<int>())).Returns(_statusList[0]);
+            _statusRepo.Setup(s => s.Get(It.IsAny<int>())).Returns(_statusList.Items[0]);
         }
 
         private StatusService GetService()
@@ -67,7 +67,7 @@ namespace Site.NUnit
 
             result.Page.ShouldEqual(PageNumber);
             result.ItemsPerPage.ShouldEqual(ItemsPerPage);
-            result.Status.Count().ShouldEqual(_statusList.Count());
+            result.Status.Count().ShouldEqual(_statusList.Items.Count());
 
             _statusRepo.Verify(s => s.GetHistory(UserId, PageNumber, ItemsPerPage), Times.Once);
         }
@@ -76,14 +76,14 @@ namespace Site.NUnit
         public void MapStatus()
         {
             var svc = GetService();
-            var result = svc.MapStatus(_statusList[0]);
-            result.Message.ShouldEqual(_statusList[0].Message);
-            result.LikeCount.ShouldEqual(_statusList[0].Likes);
-            result.DateAdded.ShouldEqual(_statusList[0].DateAdded);
-            result.UserId.ShouldEqual(_statusList[0].AddedBy.UserId);
-            result.UserName.ShouldEqual(_statusList[0].AddedBy.UserName);
-            result.ViewCount.ShouldEqual(_statusList[0].Views);
-            result.StatusId.ShouldEqual(_statusList[0].StatusId);
+            var result = svc.MapStatus(_statusList.Items[0]);
+            result.Message.ShouldEqual(_statusList.Items[0].Message);
+            result.LikeCount.ShouldEqual(_statusList.Items[0].Likes);
+            result.DateAdded.ShouldEqual(_statusList.Items[0].DateAdded);
+            result.UserId.ShouldEqual(_statusList.Items[0].AddedBy.UserId);
+            result.UserName.ShouldEqual(_statusList.Items[0].AddedBy.UserName);
+            result.ViewCount.ShouldEqual(_statusList.Items[0].Views);
+            result.StatusId.ShouldEqual(_statusList.Items[0].StatusId);
         }
         
         [Test]

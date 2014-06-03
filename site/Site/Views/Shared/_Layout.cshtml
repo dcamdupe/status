@@ -32,9 +32,9 @@
                                 <li>@Html.ActionLink("History", "", "Status")</li>
                                 <li>@Html.ActionLink("New Post", "New", "Status")</li>
                                 <li>
-                                    <form class="navbar-form navbar-right" role="search">
+                                    <form class="navbar-form navbar-right" role="search" action="/Status/Search" method="get">
                                         <div class="form-group">
-                                            @Html.TextBox("Search", "", new { placeholder = "Search", Class = "form-control" })
+                                            @Html.TextBox("searchText", "", new { placeholder = "Search", Class = "form-control" })
                                         </div>
                                     </form>
                                 </li>

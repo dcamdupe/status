@@ -23,12 +23,12 @@ namespace Site.Controllers
         }
 
         [Authorize]
-        public ActionResult Index(int? pageNumber)
+        public ActionResult Index(int? page)
         {
-            if (!pageNumber.HasValue)
-                pageNumber = 1;
+            if (!page.HasValue)
+                page = 1;
 
-            var statusList = _statusService.GetHistory((int)_session["UserId"], pageNumber.Value, ItemsPerPage);
+            var statusList = _statusService.GetHistory((int)_session["UserId"], page.Value, ItemsPerPage);
 
             return View("History", statusList);
         }
@@ -51,9 +51,14 @@ namespace Site.Controllers
         }
 
         [Authorize]
-        public ActionResult Search(string text, int pageNumber)
+        public ActionResult Search(string searchText, int? page)
         {
-            throw new NotImplementedException();
+            if (!page.HasValue)
+                page = 1;
+
+            var statusList = _statusService.Search(searchText, page.Value, ItemsPerPage);
+
+            return View("Search", statusList);
         }
     }
 }

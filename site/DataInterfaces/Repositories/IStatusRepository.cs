@@ -12,7 +12,7 @@ namespace DataInterfaces.Repositories
         Status Get(int statusId);
         void AddLike(int statusId, string IpAdress, int? userId);
         void AddView(int statusId, string IpAdress, int? userId);
-        List<Status> Search(int? userId, string search, int page, int itemsPerPage);
-        List<Status> GetHistory(int userId, int page, int itemsPerPage);
+        StatusList Search(int? userId, string search, int page, int itemsPerPage);
+        StatusList GetHistory(int userId, int page, int itemsPerPage);
     }
 }

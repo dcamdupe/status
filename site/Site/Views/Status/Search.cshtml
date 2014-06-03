@@ -1,14 +1,16 @@
 ﻿@{
-    ViewBag.Title = "Status History";
+    ViewBag.Title = "Status Search";
     ViewBag.IsLoggedIn = Site.Services.HttpContextHelpers.IsAuthenicated(this.Context);
 }
 
-@model Site.Models.StatusList
+@model Site.Models.SearchResults
 
 <div class="row">
     <div class="col-md-3"></div>
     <div class="Container col-md-6">
-        @foreach (var m in Model.Status)
+        <div>Searching for "@Model.Search"</div>
+
+        @foreach (var m in Model.StatusList.Status)
         {
             <div class="panel pandel-default" onclick="document.location = '/Status/Single?statusId=@m.StatusId'">
                 <div class="panel-body">
@@ -17,7 +19,7 @@
                     </div>
                 </div>
                 <div class="panel-footer clearfix">
-                    <div class="pull-left">@m.DateAdded</div>
+                    <div class="pull-left">@m.DateAdded by @m.UserName</div>
                     <div class="pull-right">
                         Popularity: @m.Popularity
                     </div>
@@ -31,20 +33,23 @@
 <div class="row">
     <div class="col-md-5"></div>
     <div class="col-md-2 pagination-centered">
-        Go to Page:
-        <select onchange="document.location = '/Status?page=' + this.value">
-            @foreach (var i in Enumerable.Range(1, Model.PageCount))
-            {
-                if (i == Model.Page)
+        <form method="get" action="/Status/Search">
+            <input type="hidden" name="searchText" value="@Model.Search" />
+            Go to Page:
+            <select name="page" onchange="this.form.submit()">
+                @foreach (var i in Enumerable.Range(1, Model.StatusList.PageCount))
                 {
-                    <option value="@i" selected>@i</option>
+                    if (i == Model.StatusList.Page)
+                    {
+                        <option value="@i" selected>@i</option>
+                    }
+                    else
+                    {
+                        <option value="@i">@i</option>
+                    }
                 }
-                else
-                {
-                    <option value="@i">@i</option>
-                }
-            }
-        </select>
+            </select>
+        </form>
     </div>
     <div class="col-md-5"></div>
 </div>
