@@ -46,7 +46,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\Status.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="Repositories\IApiSession.cs" />
+    <Compile Include="Repositories\IApiSessionRepository.cs" />
     <Compile Include="Repositories\IStatusRepository.cs" />
     <Compile Include="Repositories\IUserPasswordRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />

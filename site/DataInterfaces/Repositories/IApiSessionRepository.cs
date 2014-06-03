@@ -6,7 +6,7 @@ using DataInterfaces.Models;
 
 namespace DataInterfaces.Repositories
 {
-    public interface IApiSession
+    public interface IApiSessionRepository
     {
         Session GetSession(int userId);
         Session IsSessionValid(string sessionId);

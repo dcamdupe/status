@@ -9,7 +9,7 @@ using Data.Services;
 
 namespace Data.Repositories
 {
-    public class ApiSession : IApiSession
+    public class ApiSessionRepository : IApiSessionRepository
     {
         public Session GetSession(int userId)
         {
