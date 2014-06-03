@@ -1,0 +1,22 @@
+﻿@model Site.Models.Pagination
+
+<div class="row">
+    <div class="col-md-5"></div>
+    <div class="col-md-2 pagination-centered">
+        Go to Page:
+        <select onchange="document.location = '@Model.BaseUrl' + 'page=' + this.value">
+            @foreach (var i in Enumerable.Range(1, Model.PageCount))
+            {
+                if (i == Model.Page)
+                {
+                    <option value="@i" selected>@i</option>
+                }
+                else
+                {
+                    <option value="@i">@i</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="col-md-5"></div>
+</div>

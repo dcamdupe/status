@@ -30,26 +30,4 @@
     <div class="col-md-3"></div>
 </div>
 
-<div class="row">
-    <div class="col-md-5"></div>
-    <div class="col-md-2 pagination-centered">
-        <form method="get" action="/Status/Search">
-            <input type="hidden" name="searchText" value="@Model.Search" />
-            Go to Page:
-            <select name="page" onchange="this.form.submit()">
-                @foreach (var i in Enumerable.Range(1, Model.StatusList.PageCount))
-                {
-                    if (i == Model.StatusList.Page)
-                    {
-                        <option value="@i" selected>@i</option>
-                    }
-                    else
-                    {
-                        <option value="@i">@i</option>
-                    }
-                }
-            </select>
-        </form>
-    </div>
-    <div class="col-md-5"></div>
-</div>
+@Html.Partial("~/Views/PartialViews/Pagination.cshtml", new Site.Models.Pagination { PageCount = Model.StatusList.PageCount, Page = Model.StatusList.Page, BaseUrl = "/Status/Search?searchText=" + HttpUtility.UrlEncode(Model.Search) + "&" });

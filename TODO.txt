@@ -1,6 +1,5 @@
 TODO:
 
-# create partial view to avoid duplication of pagination view
 # resolve session auth problems (ie forms auth says logged in, but we have no userId)
 # implement like buttons
 # add unit tests for controller actions and StatusService
