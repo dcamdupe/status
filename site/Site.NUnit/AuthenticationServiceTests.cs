@@ -31,7 +31,7 @@ namespace Site.NUnit
         {
             _authLogic.Setup(a => a.AuthenticateUser(It.IsAny<string>(), It.IsAny<string>())).Returns((User) null);
             var auth = new AuthenticationService(_authLogic.Object);
-            Assert.AreEqual(false, auth.AutheticateUser(_httpContext.Object, "", ""));
+            Assert.AreEqual(null, auth.AutheticateUser(_httpContext.Object, "", ""));
             _authLogic.Verify(a => a.AuthenticateUser("", ""), Times.Once);
         }
     }

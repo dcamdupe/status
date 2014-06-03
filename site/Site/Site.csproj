@@ -134,6 +134,8 @@
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\HttpContextHelpers.cs" />
     <Compile Include="Services\IAuthenticationService.cs" />
+    <Compile Include="Services\IStatusService.cs" />
+    <Compile Include="Services\StatusService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -186,7 +188,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Status\Index.cshtml" />
+    <Content Include="Views\Status\History.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Status\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Status\Single.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

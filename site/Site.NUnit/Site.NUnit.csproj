@@ -38,6 +38,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Should">
+      <HintPath>..\packages\Should.1.1.20\lib\Should.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -49,10 +52,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StatusControllerTests.cs" />
+    <Compile Include="StatusServiceTests.cs" />
     <Compile Include="AuthenticationServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

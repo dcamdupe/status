@@ -63,6 +63,8 @@ namespace Site.App_Start
             kernel.Bind<IUserRepository>().To<UserRepository>();
             kernel.Bind<IAuthenticationService>().To<AuthenticationService>();
             kernel.Bind<IAuthentication>().To<Authentication>();
+            kernel.Bind<HttpSessionStateBase>().ToConstructor<HttpSessionStateWrapper>(x => new HttpSessionStateWrapper(HttpContext.Current.Session));
+            kernel.Bind<IStatusService>().To<StatusService>();
         }
     }
 }

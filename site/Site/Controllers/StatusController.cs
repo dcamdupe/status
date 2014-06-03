@@ -6,28 +6,54 @@ using System.Web.Mvc;
 using DataInterfaces.Repositories;
 using Data;
 using Site.Models;
+using Site.Services;
 
 namespace Site.Controllers
 {
     public class StatusController : Controller
     {
-        private IStatusRepository _statusController;
+        private IStatusService _statusService;
+        private HttpSessionStateBase _session;
+        public const int ItemsPerPage = 10;
 
-        public StatusController(IStatusRepository statusController)
+        public StatusController(IStatusService statusService, HttpSessionStateBase session)
         {
-            _statusController = statusController;
+            _statusService = statusService;
+            _session = session;
         }
 
-        //
-        // GET: /Status/
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(int? pageNumber)
         {
-            var statusList = _statusController.GetHistory(1, 1, 10)
-                .Select(s => new Status {DateAdded = s.DateAdded, ViewCount = s.Views, LikeCount = s.Likes, Message = s.Message, UserId = s.AddedBy.UserId, UserName = s.AddedBy.UserName});
+            if (!pageNumber.HasValue)
+                pageNumber = 1;
 
-            return View(new StatusList { Status = statusList});
+            var statusList = _statusService.GetHistory((int)_session["UserId"], pageNumber.Value, ItemsPerPage);
+
+            return View("History", statusList);
         }
 
+        [Authorize]
+        public ActionResult New(string message)
+        {
+            if (string.IsNullOrWhiteSpace(message))
+                return View("New");
+
+            var statusId = _statusService.Add(message, (int)_session["UserId"]);
+
+            return RedirectToAction("Single", new { statusId = statusId });
+        }
+
+        [Authorize]
+        public ActionResult Single(int statusId)
+        {
+            return View("Single", _statusService.Get(statusId));
+        }
+
+        [Authorize]
+        public ActionResult Search(string text, int pageNumber)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

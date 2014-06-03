@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Status History";
+    ViewBag.IsLoggedIn = Site.Services.HttpContextHelpers.IsAuthenicated(this.Context);
+}
+
+@model Site.Models.Status
+
+<div class="col-md-3"></div>
+<div class="Container col-md-6">
+    <div class="panel pandel-default">
+        <div class="panel-body">
+            <div>
+                @Model.Message
+            </div>
+        </div>
+        <div class="panel-footer clearfix">
+            <div class="pull-left">@Model.DateAdded</div>
+            <div class="pull-right">
+                Popularity: @Model.Popularity
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-md-3"></div>

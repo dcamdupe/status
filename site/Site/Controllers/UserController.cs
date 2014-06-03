@@ -13,10 +13,12 @@ namespace Site.Controllers
     public class UserController : Controller
     {
         private IAuthenticationService _authenticationService;
+        private HttpSessionStateBase _session;
 
-        public UserController(IAuthenticationService authenticationService)
+        public UserController(IAuthenticationService authenticationService, HttpSessionStateBase session)
         {
             _authenticationService = authenticationService;
+            _session = session;
         }
 
         //
@@ -35,8 +37,8 @@ namespace Site.Controllers
                 var user = _authenticationService.AutheticateUser(HttpContext, auth.Login, auth.Password);
                 if (user != null)
                 {
-                    FormsAuthentication.SetAuthCookie(auth.Login, true);
-                    Session["UserId"] = user.UserId;
+                    FormsAuthentication.SetAuthCookie(auth.Login, false);
+                    _session["UserId"] = user.UserId;
                     return RedirectToAction("index", "");
                 }
 
