@@ -142,5 +142,13 @@ namespace Site.NUnit
             var svc = GetService();
             svc.CalculatePopularity(50, 2).ShouldEqual(100);
         }
+
+        [Test]
+        public void AddLike()
+        {
+            var svc = GetService();
+            svc.AddLike(1, "", 2);
+            _statusRepo.Verify(s => s.AddLike(1, "", 2), Times.Once);
+        }
     }
 }

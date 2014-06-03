@@ -51,7 +51,7 @@ namespace Site.Controllers
         [HttpGet]
         public ActionResult Logout(AuthenticationDetails auth)
         {
-            FormsAuthentication.SignOut();
+            _session.Abandon();
             return RedirectToAction("index", "");
         }
     }

@@ -1,6 +1,6 @@
 TODO:
 
-# resolve session auth problems (ie forms auth says logged in, but we have no userId)
-# implement like buttons
+nice to have:
+# add unit tests for the UserController
 # better URLs for single status display
-# better visibility of clickability for history and search
+# fix search box wrapping off to the right

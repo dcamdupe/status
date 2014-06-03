@@ -1,4 +1,8 @@
-﻿a.statusLink:hover, a:focus { background-color: #CCC;
+﻿div.statusDiv
+{
+    cursor: pointer;
 }
 
-a.statusLink { text-decoration: none; }
+div.statusDiv:hover{
+   background-color:#CCCCCC;
+}

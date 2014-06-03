@@ -21,6 +21,11 @@
         </div>
         <div class="panel-footer clearfix">
             <div class="pull-left"> Viewed: @Model.ViewCount, Liked: @Model.LikeCount</div>
+            <div class="pull-right">
+                @if ((int)Session["UserId"] != Model.UserId) {
+                    @Html.ActionLink("Like", "AddLike", new { statusId = Model.StatusId });
+                }
+            </div>
         </div>
 </div>
 <div class="col-md-3"></div>

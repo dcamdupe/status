@@ -53,7 +53,7 @@ namespace Site.Services
 
         public void AddLike(int statusId, string IpAdress, int? userId)
         {
-            throw new NotImplementedException();
+            _statusRepository.AddLike(statusId, IpAdress, userId);
         }
 
         public int Add(string Message, int userId)

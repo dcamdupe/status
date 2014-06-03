@@ -12,7 +12,10 @@ namespace Site.Services
             if (System.Web.HttpContext.Current.User == null)
                 return false;
 
-            return System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+            if (!System.Web.HttpContext.Current.User.Identity.IsAuthenticated)
+                return false;
+
+            return context.Session["UserId"] != null;
         }
     }
 }

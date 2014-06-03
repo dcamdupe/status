@@ -5,12 +5,14 @@
 
 @model Site.Models.StatusList
 
+@Html.Partial("~/Views/PartialViews/Pagination.cshtml", new Site.Models.Pagination { PageCount = Model.PageCount, Page = Model.Page, BaseUrl = "/Status?" });
+
 <div class="row">
     <div class="col-md-3"></div>
     <div class="Container col-md-6">
         @foreach (var m in Model.Status)
         {
-            <div class="panel pandel-default" onclick="document.location = '/Status/Single?statusId=@m.StatusId'">
+            <div class="panel pandel-default statusDiv" onclick="document.location = '/Status/Single?statusId=@m.StatusId'">
                 <div class="panel-body">
                     <div>
                         @m.Message

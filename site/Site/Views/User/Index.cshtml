@@ -5,18 +5,23 @@
 
 @model Site.Models.AuthenticationDetails
 
-<div class="container">
-    <h2>Please enter login and password</h2>
-    @using (Html.BeginForm("Index", "User", FormMethod.Post, new { role = "form" }))
-    {
-        <div class="form-group">
-            @Html.TextBoxFor(model => model.Login, new { placeholder = "Login" })
-            @Html.ValidationMessageFor(model => model.Login)
-        </div>
-        <div class="form-group">
-            @Html.PasswordFor(model => model.Password, new { placeholder = "Password" })
-            @Html.ValidationMessageFor(model => model.Password)
-        </div>
-        <div><input type="submit" value="Login" class="btn btn-default" /></div>
-    }
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="container col-md-4">
+        <h2>Please enter login and password</h2>
+        @using (Html.BeginForm("Index", "User", FormMethod.Post, new { role = "form" }))
+        {
+            <div class="form-group">
+                @Html.TextBoxFor(model => model.Login, new { placeholder = "Login" })
+                @Html.ValidationMessageFor(model => model.Login)
+            </div>
+            <div class="form-group">
+                @Html.PasswordFor(model => model.Password, new { placeholder = "Password" })
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+            <div><input type="submit" value="Login" class="btn btn-default" /></div>
+        }
+    </div>
+    <div class="col-md-4"></div>
 </div>
