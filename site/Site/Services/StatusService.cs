@@ -64,6 +64,7 @@ namespace Site.Services
                     Message = status.Message,
                     UserId = status.AddedBy.UserId,
                     UserName = status.AddedBy.UserName,
+                    StatusId = status.StatusId
                 };
         }
 

@@ -83,6 +83,7 @@ namespace Site.NUnit
             result.UserId.ShouldEqual(_statusList[0].AddedBy.UserId);
             result.UserName.ShouldEqual(_statusList[0].AddedBy.UserName);
             result.ViewCount.ShouldEqual(_statusList[0].Views);
+            result.StatusId.ShouldEqual(_statusList[0].StatusId);
         }
         
         [Test]

@@ -7,6 +7,7 @@ namespace Site.Models
 {
     public class Status
     {
+        public int StatusId { get; set; }
         public string UserName { get; set; }
         public int UserId { get; set; }
         public string Message { get; set; }

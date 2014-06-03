@@ -9,7 +9,7 @@
 <div class="Container col-md-6">
     @foreach (var m in Model.Status)
     {
-        <div class="panel pandel-default">
+        <div class="panel pandel-default" onclick="document.location = '/Status/Single?statusId=@m.StatusId'">
             <div class="panel-body">
                 <div>
                     @m.Message
