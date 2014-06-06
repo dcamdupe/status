@@ -1,5 +1,4 @@
 TODO:
-# add logging
 
 nice to have:
 # add unit tests for the UserController
