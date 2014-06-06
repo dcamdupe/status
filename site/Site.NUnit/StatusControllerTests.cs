@@ -14,6 +14,7 @@ using Should;
 using Site.Controllers;
 using System.Web.Mvc;
 using Site.Models;
+using log4net;
 
 namespace Site.NUnit
 {
@@ -23,6 +24,7 @@ namespace Site.NUnit
         private Mock<IStatusService> _statusService;
         private Mock<HttpSessionStateBase> _session;
         private Mock<HttpRequestBase> _request;
+        private Mock<ILog> _log;
         private const int UserId = 1;
         private const string IpAddress = "127.0.0.1";
 
@@ -31,6 +33,7 @@ namespace Site.NUnit
         {
             _statusService = new Mock<IStatusService>();
             _session = new Mock<HttpSessionStateBase>();
+            _log = new Mock<ILog>();
             _session.Setup(s => s["UserId"]).Returns(UserId);
             _request = new Mock<HttpRequestBase>();
             _request.SetupGet(r => r.UserHostAddress).Returns(IpAddress);
@@ -38,7 +41,7 @@ namespace Site.NUnit
 
         private StatusController GetController()
         {
-            return new StatusController(_statusService.Object, _session.Object, _request.Object);
+            return new StatusController(_statusService.Object, _session.Object, _request.Object, _log.Object);
         }
 
         [Test]

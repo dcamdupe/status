@@ -15,6 +15,7 @@ namespace Site.App_Start
     using Data;
     using SiteLogic;
     using Site.Services;
+    using log4net;
 
     public static class NinjectWebCommon 
     {
@@ -66,6 +67,7 @@ namespace Site.App_Start
             kernel.Bind<HttpSessionStateBase>().ToConstructor<HttpSessionStateWrapper>(x => new HttpSessionStateWrapper(HttpContext.Current.Session));
             kernel.Bind<IStatusService>().To<StatusService>();
             kernel.Bind<HttpRequestBase>().ToConstructor<HttpRequestWrapper>(x => new HttpRequestWrapper(HttpContext.Current.Request));
+            kernel.Bind<ILog>().ToMethod(x => LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType)).InTransientScope();
         }
     }
 }

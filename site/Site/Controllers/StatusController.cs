@@ -7,6 +7,7 @@ using DataInterfaces.Repositories;
 using Data;
 using Site.Models;
 using Site.Services;
+using log4net;
 
 namespace Site.Controllers
 {
@@ -15,13 +16,15 @@ namespace Site.Controllers
         private HttpRequestBase _requestBase;
         private IStatusService _statusService;
         private HttpSessionStateBase _session;
+        private ILog _log;
         public const int ItemsPerPage = 10;
 
-        public StatusController(IStatusService statusService, HttpSessionStateBase session, HttpRequestBase requestBase)
+        public StatusController(IStatusService statusService, HttpSessionStateBase session, HttpRequestBase requestBase, ILog log)
         {
             _statusService = statusService;
             _session = session;
             _requestBase = requestBase;
+            _log = log;
         }
 
         [Authorize]
