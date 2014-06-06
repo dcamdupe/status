@@ -14,5 +14,7 @@ namespace Site.Models
         [Required(ErrorMessage="Please enter the password")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
+        public bool LoginFailed { get; set; }
     }
 }

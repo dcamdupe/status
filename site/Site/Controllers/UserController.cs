@@ -26,7 +26,7 @@ namespace Site.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            return View(new AuthenticationDetails());
         }
 
         [HttpPost]
@@ -39,11 +39,12 @@ namespace Site.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(auth.Login, false);
                     _session["UserId"] = user.UserId;
-                    _log.Info(string.Format("login suceeded, {0}", auth.Login));
+                    _log.Info(string.Format("login suceeded, login: \"{0}\"", auth.Login));
                     return RedirectToAction("index", "");
                 }
 
-                _log.Info(string.Format("login failed, {0}", auth.Login));
+                auth.LoginFailed = true;
+                _log.Info(string.Format("login failed, login: \"{0}\"", auth.Login));
 
                 return View(auth);
             }
