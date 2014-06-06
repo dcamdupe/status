@@ -31,7 +31,7 @@
                                 <li>@Html.ActionLink("Logout", "Logout", "User")</li>
                                 <li>@Html.ActionLink("History", "", "Status")</li>
                                 <li>@Html.ActionLink("New Post", "New", "Status")</li>
-                                <li>
+                                <li class="searchFixes">
                                     <form class="navbar-form navbar-right" role="search" action="/Status/Search" method="get">
                                         <div class="form-group">
                                             @Html.TextBox("searchText", "", new { placeholder = "Search", Class = "form-control" })
