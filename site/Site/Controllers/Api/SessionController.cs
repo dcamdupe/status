@@ -5,8 +5,9 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Site.Services;
+using Site.Models.Api;
 
-namespace Site.Controllers
+namespace Site.Controllers.Api
 {
     public class SessionController : ApiController
     {
@@ -17,9 +18,14 @@ namespace Site.Controllers
             _apiServices = apiServices;
         }
 
-        public string Post(string login, string password)
+        public string Post(LoginDetails login)
         {
-            return _apiServices.CreateSession(login, password);
+            return _apiServices.CreateSession(login.Login, login.Password);
+        }
+
+        public void Delete(string sessionId)
+        {
+            _apiServices.EndSession(sessionId);
         }
     }
 }

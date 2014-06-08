@@ -50,6 +50,8 @@ namespace Site.App_Start
             kernel.Bind<IHttpModule>().To<HttpApplicationInitializationHttpModule>();
             
             RegisterServices(kernel);
+            System.Web.Http.GlobalConfiguration.Configuration.DependencyResolver = new NinjectResolver(kernel);
+
             return kernel;
         }
 
@@ -68,6 +70,8 @@ namespace Site.App_Start
             kernel.Bind<IStatusService>().To<StatusService>();
             kernel.Bind<HttpRequestBase>().ToConstructor<HttpRequestWrapper>(x => new HttpRequestWrapper(HttpContext.Current.Request));
             kernel.Bind<ILog>().ToMethod(x => LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType)).InTransientScope();
+            kernel.Bind<IApiServices>().To<ApiServices>();
+            kernel.Bind<IApiSessionRepository>().To<ApiSessionRepository>();
         }
     }
 }

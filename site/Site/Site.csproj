@@ -132,8 +132,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\NinjectResolver.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
-    <Compile Include="Controllers\Api\ApiSessionController.cs" />
+    <Compile Include="Controllers\Api\SessionController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\StatusController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Api\Login.cs" />
     <Compile Include="Models\AuthenticationDetails.cs" />
     <Compile Include="Models\Pagination.cs" />
     <Compile Include="Models\Status.cs" />

@@ -20,7 +20,7 @@ namespace Data.Repositories
                 db.SaveChanges();
                 return new Session
                 {
-                    SessionId = session.session_id.ToString("N"),
+                    SessionId = session.session_id.ToString(),
                     Expires = session.expires
                 };
             }
@@ -35,7 +35,7 @@ namespace Data.Repositories
                 if (session != null && session.expires >= DateTime.Now)
                     return new Session
                     {
-                        SessionId = session.session_id.ToString("N"),
+                        SessionId = session.session_id.ToString(),
                         Expires = session.expires
                     };
 
@@ -59,7 +59,8 @@ namespace Data.Repositories
             using (var db = new statusContainer())
             {
                 var guid = new Guid(sessionId);
-                db.api_session.Detach(db.api_session.Single(s => s.session_id == guid));
+                var session = db.api_session.Single(s => s.session_id == guid);
+                db.api_session.DeleteObject(session);
                 db.SaveChanges();
             }
         }
