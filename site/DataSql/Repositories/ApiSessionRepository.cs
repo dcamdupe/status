@@ -53,5 +53,15 @@ namespace Data.Repositories
                 db.SaveChanges();
             }
         }
+
+        public void EndSession(string sessionId)
+        {
+            using (var db = new statusContainer())
+            {
+                var guid = new Guid(sessionId);
+                db.api_session.Detach(db.api_session.Single(s => s.session_id == guid));
+                db.SaveChanges();
+            }
+        }
     }
 }

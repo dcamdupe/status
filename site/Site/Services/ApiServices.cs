@@ -8,7 +8,7 @@ using SiteLogic;
 
 namespace Site.Services
 {
-    public class ApiServices
+    public class ApiServices : IApiServices
     {
         private readonly IApiSessionRepository _apiRepository;
         private readonly IAuthentication _authService;
@@ -40,6 +40,11 @@ namespace Site.Services
                 return true;
             }
             return false;
+        }
+
+        public void EndSession(string sessionId)
+        {
+            _apiRepository.EndSession(sessionId);
         }
     }
 }

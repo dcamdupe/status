@@ -151,6 +151,7 @@
     <Compile Include="Services\ApiServices.cs" />
     <Compile Include="Services\AuthenticationService.cs" />
     <Compile Include="Services\HttpContextHelpers.cs" />
+    <Compile Include="Services\IApiServices.cs" />
     <Compile Include="Services\IAuthenticationService.cs" />
     <Compile Include="Services\IStatusService.cs" />
     <Compile Include="Services\StatusService.cs" />
