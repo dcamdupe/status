@@ -3,6 +3,9 @@ if ( (Get-PSSnapin -Name SqlServerCmdletSnapin100 -ErrorAction SilentlyContinue)
     Add-PsSnapin SqlServerCmdletSnapin100
 }
 
+$PSScriptRoot = Split-Path -Parent -Path $MyInvocation.MyCommand.Definition
+set-location $PSScriptRoot
+
 function create_db([string] $name)
 {
 Invoke-Sqlcmd -Query "IF (EXISTS (SELECT name FROM sysdatabases WHERE name = '$name'))
