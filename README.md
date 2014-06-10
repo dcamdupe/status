@@ -1,4 +1,4 @@
-status
+Status
 ======
 
 This is a home project to explore a number of different technologies.
