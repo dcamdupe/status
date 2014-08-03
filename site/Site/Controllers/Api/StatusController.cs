@@ -31,14 +31,14 @@ namespace Site.Controllers.Api
             return _statusService.Add(status.Message, user);
         }
 
-        public Status Get(int id, [FromUri] string SessionId)
+        public Status Get(int StatusId, [FromUri] string SessionId)
         {
             if (!_apiServices.IsSessionValid(SessionId))
                 throw new HttpResponseException(HttpStatusCode.Unauthorized);
 
             var viewUser = new ViewUser { UserId = _apiServices.GetUserFromSession(SessionId), IpAddress = Request.GetClientIp() };
 
-            return _statusService.Get(id, viewUser);
+            return _statusService.Get(StatusId, viewUser);
         }
 
         [HttpGet]

@@ -1,0 +1,6 @@
+GET http://localhost:1996/api/Status?StatusId=3&SessionId=288A575B-C20F-471E-9F45-C00BA1BD3F93 HTTP/1.1
+User-Agent: Fiddler
+content-type: application/json
+Host: localhost:1996
+Content-Length: 0
+
