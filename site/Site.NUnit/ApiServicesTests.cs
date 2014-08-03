@@ -87,5 +87,13 @@ namespace Site.NUnit
             svc.EndSession(ValidSession.SessionId);
             _sessionRepo.Verify(s => s.EndSession(It.IsAny<string>()), Times.Once);
         }
+
+        [Test]
+        public void GetUserFromSession()
+        {
+            var svc = CreateSvc();
+            svc.GetUserFromSession(ValidSession.SessionId);
+            _sessionRepo.Verify(s => s.GetUserFromSession(ValidSession.SessionId), Times.Once);
+        }
     }
 }

@@ -64,5 +64,14 @@ namespace Data.Repositories
                 db.SaveChanges();
             }
         }
+
+        public int GetUserFromSession(string sessionId)
+        {
+            using (var db = new statusContainer())
+            {
+                var guid = new Guid(sessionId);
+                return db.api_session.SingleOrDefault(a => a.session_id == guid).user_id;
+            }
+        }
     }
 }

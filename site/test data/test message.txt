@@ -1,0 +1,7 @@
+POST http://localhost:1996/api/Status HTTP/1.1
+User-Agent: Fiddler
+content-type: application/json
+Host: localhost:1996
+Content-Length: 87
+
+{"SessionId" : "288a575b-c20f-471e-9f45-c00ba1bd3f93", "Message" : "this is a message"}

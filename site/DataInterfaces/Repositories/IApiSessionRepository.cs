@@ -10,6 +10,7 @@ namespace DataInterfaces.Repositories
     {
         Session GetSession(int userId);
         Session IsSessionValid(string sessionId);
+        int GetUserFromSession(string sessionId);
         void RefreshExpiry(string sessionId);
         void EndSession(string sessionId);
     }

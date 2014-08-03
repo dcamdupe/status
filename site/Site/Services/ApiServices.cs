@@ -46,5 +46,10 @@ namespace Site.Services
         {
             _apiRepository.EndSession(sessionId);
         }
+
+        public int GetUserFromSession(string sessionId)
+        {
+            return _apiRepository.GetUserFromSession(sessionId);
+        }
     }
 }

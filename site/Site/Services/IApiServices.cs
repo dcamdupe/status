@@ -9,6 +9,7 @@ namespace Site.Services
     {
         string CreateSession(string login, string password);
         bool IsSessionValid(string sessionId);
+        int GetUserFromSession(string sessionId);
         void EndSession(string sessionId);
-    }
+    }   
 }
