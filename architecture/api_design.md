@@ -17,7 +17,9 @@ Interfaces
 * status - provides interface for interacting with status data
 	* POST - in: session_id, message, out: status_id - posts a new status
 	* GET - in: session_id, status_id, out: status data - retrieves data for a single status
+* status/search
 	* GET - in: session_id, search text, pagination data, out: list of status data - searches for a list of status data for current user
+* status/history
 	* GET - in: session_id, pagination data, out: list of status data - retrieves list of status data for current user
 * status/like - provides interface over status likes
 	* POST - in: session_id, status_id - adds a like to a status

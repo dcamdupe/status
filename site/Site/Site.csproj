@@ -64,6 +64,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Channels" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -145,7 +147,8 @@
     </Compile>
     <Compile Include="Models\Api\BaseApiMessage.cs" />
     <Compile Include="Models\Api\Login.cs" />
-    <Compile Include="Models\Api\NewMessage.cs" />
+    <Compile Include="Models\Api\LikeStatus.cs" />
+    <Compile Include="Models\Api\NewStatus.cs" />
     <Compile Include="Models\AuthenticationDetails.cs" />
     <Compile Include="Models\Pagination.cs" />
     <Compile Include="Models\Status.cs" />
@@ -160,6 +163,7 @@
     <Compile Include="Services\IAuthenticationService.cs" />
     <Compile Include="Services\IStatusService.cs" />
     <Compile Include="Services\StatusService.cs" />
+    <Compile Include="Services\WebApiHelpers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
